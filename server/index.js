@@ -1,15 +1,10 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import cors from 'cors';
+import app from './app.js';
+import http from 'http';
+import config from './utils/config.js';
+import logger from './utils/logger.js';
 
-require('dotenv').config();
+const server = http.createServer(app);
 
-const PORT = process.env.PORT;
-const MONGODB_URL = process.env.MONGODB_URL;
-
-const app = express();
-
-app.use(bodyParser.json({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+server.listen(config.PORT, () => {
+  logger.info(`Server running on port ${config.PORT}`);
+});

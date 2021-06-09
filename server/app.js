@@ -3,8 +3,6 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import config from './utils/config.js';
-import logger from './utils/logger.js';
-import middleware from './utils/middlewares.js';
 import invoicesRoutes from './routes/invoices.js';
 
 const app = express();
@@ -17,9 +15,9 @@ const connectDB = async () => {
       useFindAndModify: false,
       useCreateIndex: true,
     });
-    logger.info('connected to MongoDB');
+    console.log('connected to MongoDB');
   } catch (error) {
-    logger.error('error connecting to MongoDB:', error.message);
+    console.log('error connecting to MongoDB:', error.message);
   }
 };
 
@@ -28,13 +26,9 @@ connectDB();
 app.use(cors());
 app.use(express.static('build'));
 app.use(express.json());
-app.use(middleware.requestLogger);
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 
 app.use('/invoices', invoicesRoutes);
-
-app.use(middleware.unknownEndpoint);
-app.use(middleware.errorHandler);
 
 export default app;

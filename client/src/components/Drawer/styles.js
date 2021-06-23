@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     background: '#7C5DFA',
     borderRadius: ' 0 20px 20px 0',
     marginBottom: 'auto',
+    borderBottomRightRadius: 20,
   },
   logo: {
     width: 40,

@@ -1,13 +1,21 @@
 import React from 'react';
 import PermanentDrawerLeft from './components/Drawer/PermanentDraweLeftr';
-import LogoSvg from './assets/logo.svg';
+import Invoices from './components/Invoices/Invoices';
+import InvoiceDetailes from './components/InvoiceDetailes/InvoiceDetailes';
+import Form from './components/Form/Form';
+
+import useStyles from './styles';
 
 const App = () => {
+  const classes = useStyles();
+
   return (
-    <>
+    <div className={classes.root}>
       <PermanentDrawerLeft />
-      <img src={LogoSvg} alt="logo" height="60" />
-    </>
+      <Invoices />
+      <InvoiceDetailes />
+      <Form />
+    </div>
   );
 };
 

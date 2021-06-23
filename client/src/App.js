@@ -1,10 +1,13 @@
 import React from 'react';
+import PermanentDrawerLeft from './components/Drawer/PermanentDraweLeftr';
+import LogoSvg from './assets/logo.svg';
 
 const App = () => {
   return (
-    <div>
-      <h1>App</h1>
-    </div>
+    <>
+      <PermanentDrawerLeft />
+      <img src={LogoSvg} alt="logo" height="60" />
+    </>
   );
 };
 

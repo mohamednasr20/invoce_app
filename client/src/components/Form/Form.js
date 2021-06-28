@@ -1,12 +1,12 @@
 import React from 'react';
+import ItemsList from './ItemsList/ItemsList';
 import {
   Container,
   Typography,
   TextField,
   Select,
   MenuItem,
-  FormControl,
-  InputLabel,
+  Button,
 } from '@material-ui/core';
 import useStyles from './styles';
 
@@ -14,31 +14,31 @@ const Form = () => {
   const classes = useStyles();
 
   return (
-    <Container>
+    <Container className={classes.root}>
       <Typography variant="h4">New Invoice</Typography>
 
       <form>
-        <Typography variant="h6" color="primary">
+        <Typography variant="h5" className={classes.heading} color="primary">
           Bill From
         </Typography>
         <div className={classes.label}>Street Address</div>
         <TextField variant="outlined" size="small" fullWidth />
         <div className={classes.flex}>
-          <div>
+          <div className={classes.space}>
             <div className={classes.label}>City</div>
             <TextField variant="outlined" size="small" />
           </div>
-          <div>
+          <div className={classes.space}>
             <div className={classes.label}>Post Code</div>
             <TextField variant="outlined" size="small" />
           </div>
-          <div>
+          <div className={classes.space}>
             <div className={classes.label}>Country</div>
             <TextField variant="outlined" size="small" />
           </div>
         </div>
 
-        <Typography variant="h6" color="primary">
+        <Typography variant="h5" className={classes.heading} color="primary">
           Bill to
         </Typography>
         <div className={classes.label}>Client's Name</div>
@@ -48,15 +48,15 @@ const Form = () => {
         <div className={classes.label}>Street Address</div>
         <TextField variant="outlined" size="small" fullWidth />
         <div className={classes.flex}>
-          <div>
+          <div className={classes.space}>
             <div className={classes.label}>City</div>
             <TextField variant="outlined" size="small" />
           </div>
-          <div>
+          <div className={classes.space}>
             <div className={classes.label}>Post Code</div>
             <TextField variant="outlined" size="small" />
           </div>
-          <div>
+          <div className={classes.space}>
             <div className={classes.label}>Country</div>
             <TextField variant="outlined" size="small" />
           </div>
@@ -83,6 +83,19 @@ const Form = () => {
         </div>
         <div className={classes.label}>Payment Description</div>
         <TextField variant="outlined" size="small" fullWidth />
+
+        <ItemsList />
+        <div className={classes.btnGroup}>
+          <Button variant="contained">Discard</Button>
+          <div className={classes.btnRight}>
+            <Button className={classes.btn} variant="outlined">
+              Save As Draft
+            </Button>
+            <Button className={classes.btn} variant="contained" color="primary">
+              Save And Send
+            </Button>
+          </div>
+        </div>
       </form>
     </Container>
   );

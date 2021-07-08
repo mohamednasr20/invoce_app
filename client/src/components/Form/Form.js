@@ -70,8 +70,8 @@ const Form = () => {
           <div>
             <div className={classes.label}>Payment terms</div>
 
-            <Select autoWidth="false">
-              <MenuItem value="">
+            <Select value={''} autoWidth>
+              <MenuItem value={''}>
                 <em>None</em>
               </MenuItem>
               <MenuItem value={30}>Next 30 days</MenuItem>

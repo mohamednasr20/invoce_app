@@ -8,6 +8,7 @@ const Invoices = () => {
   const invoices = useSelector((state) => state.invoices);
 
   console.log(invoices);
+
   return (
     <Container>
       <InvoicesNav />

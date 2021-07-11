@@ -11,6 +11,11 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 20,
   },
 
+  paper: {
+    padding: 20,
+    borderRadius: 15,
+  },
+
   heading: {
     marginTop: 20,
     marginBottom: 20,

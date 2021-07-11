@@ -7,9 +7,6 @@ const useStyles = makeStyles((theme) => ({
   iconGrid: {
     margin: 'auto',
   },
-  icon: {
-    marginLeft: 20,
-  },
 }));
 
 export default useStyles;

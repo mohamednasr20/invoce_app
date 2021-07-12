@@ -9,6 +9,8 @@ import {
   Button,
   Paper,
 } from '@material-ui/core';
+import { v4 as uuidv4 } from 'uuid';
+import AddIcon from '@material-ui/icons/Add';
 import useStyles from './styles';
 
 const Form = () => {
@@ -36,6 +38,16 @@ const Form = () => {
     },
     items: [],
   });
+
+  const addItemField = () => {
+    setInvociesData({
+      ...invoicesData,
+      items: [
+        ...invoicesData.items,
+        { id: uuidv4(), name: '', qty: '', price: '' },
+      ],
+    });
+  };
 
   return (
     <Container className={classes.root}>
@@ -119,7 +131,6 @@ const Form = () => {
               />
             </div>
           </div>
-
           <Typography variant="h5" className={classes.heading} color="primary">
             Bill to
           </Typography>
@@ -218,7 +229,6 @@ const Form = () => {
               />
             </div>
           </div>
-
           <div className={classes.flex}>
             <div>
               <div className={classes.label}>Payment Due</div>
@@ -271,8 +281,18 @@ const Form = () => {
               setInvociesData({ ...invoicesData, description: e.target.value })
             }
           />
-
-          <ItemsList />
+          {invoicesData.items.length > 0 ? (
+            <ItemsList items={invoicesData.items} />
+          ) : null}
+          <Button
+            variant="contained"
+            fullWidth
+            className={classes.btnList}
+            onClick={addItemField}
+          >
+            <AddIcon />
+            Add New Item
+          </Button>
           <div className={classes.btnGroup}>
             <Button variant="contained">Discard</Button>
             <div className={classes.btnRight}>

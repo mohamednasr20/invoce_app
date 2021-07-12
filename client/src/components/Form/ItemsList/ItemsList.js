@@ -1,11 +1,15 @@
 import React from 'react';
 import Item from './Item/Item';
-import { Typography, Grid, Button } from '@material-ui/core';
-
+import { Typography, Grid } from '@material-ui/core';
 import useStyles from './styles';
 
-const ItemsList = () => {
+const ItemsList = ({ items }) => {
   const classes = useStyles();
+
+  const showItems =
+    items.length > 0
+      ? items.map((item) => <Item key={item.id} item={item} />)
+      : '';
 
   return (
     <div className={classes.root}>
@@ -26,13 +30,7 @@ const ItemsList = () => {
           <Typography>Total</Typography>
         </Grid>
       </Grid>
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Button variant="contained" fullWidth className={classes.btn}>
-        Add New Item
-      </Button>
+      {showItems}
     </div>
   );
 };

@@ -41,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
   btn: {
     marginRight: 10,
   },
+
+  btnList: {
+    marginTop: 20,
+    borderRadius: 15,
+  },
 }));
 
 export default useStyles;

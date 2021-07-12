@@ -3,12 +3,14 @@ import Item from './Item/Item';
 import { Typography, Grid } from '@material-ui/core';
 import useStyles from './styles';
 
-const ItemsList = ({ items }) => {
+const ItemsList = ({ items, handleChangeItem }) => {
   const classes = useStyles();
 
   const showItems =
     items.length > 0
-      ? items.map((item) => <Item key={item.id} item={item} />)
+      ? items.map((item) => (
+          <Item key={item.id} item={item} handleChangeItem={handleChangeItem} />
+        ))
       : '';
 
   return (

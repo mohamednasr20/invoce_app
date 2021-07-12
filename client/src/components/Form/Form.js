@@ -49,6 +49,18 @@ const Form = () => {
     });
   };
 
+  const handleChangeItemValue = (e, i) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    const newItems = invoicesData.items.map((item, idx) =>
+      idx === invoicesData.items.indexOf(i) ? { ...item, [name]: value } : item
+    );
+
+    setInvociesData({ ...invoicesData, items: newItems });
+    console.log(newItems);
+  };
+
   return (
     <Container className={classes.root}>
       <Paper className={classes.paper}>
@@ -231,18 +243,18 @@ const Form = () => {
           </div>
           <div className={classes.flex}>
             <div>
-              <div className={classes.label}>Payment Due</div>
+              <div className={classes.label}>Invoice Date</div>
               <TextField
-                name="paymentDue"
+                name="createdAt"
                 type="date"
-                value={invoicesData.paymentDue}
+                value={invoicesData.createdAt}
                 variant="outlined"
                 size="small"
                 fullWidth
                 onChange={(e) =>
                   setInvociesData({
                     ...invoicesData,
-                    paymentDue: e.target.value,
+                    createdAt: e.target.value,
                   })
                 }
               />
@@ -282,7 +294,10 @@ const Form = () => {
             }
           />
           {invoicesData.items.length > 0 ? (
-            <ItemsList items={invoicesData.items} />
+            <ItemsList
+              items={invoicesData.items}
+              handleChangeItem={handleChangeItemValue}
+            />
           ) : null}
           <Button
             variant="contained"

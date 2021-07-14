@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import ItemsList from './ItemsList/ItemsList';
+import { createInvoice } from '../../actions/invoices';
+import { useDispatch } from 'react-redux';
 import {
   Container,
   Typography,
@@ -15,6 +17,7 @@ import useStyles from './styles';
 
 const Form = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const [invoicesData, setInvociesData] = useState({
     createdAt: '',
@@ -37,6 +40,7 @@ const Form = () => {
       country: '',
     },
     items: [],
+    total: '',
   });
 
   const addItemField = () => {
@@ -44,14 +48,14 @@ const Form = () => {
       ...invoicesData,
       items: [
         ...invoicesData.items,
-        { id: uuidv4(), name: '', qty: '', price: '' },
+        { id: uuidv4(), name: '', quantity: '', price: '', total: '30' },
       ],
     });
   };
 
   const handleChangeItemValue = (e, i) => {
     const name = e.target.name;
-    const value = e.target.value;
+    let value = e.target.value;
 
     const newItems = invoicesData.items.map((item, idx) =>
       idx === invoicesData.items.indexOf(i) ? { ...item, [name]: value } : item
@@ -61,7 +65,7 @@ const Form = () => {
     console.log(newItems);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // calculate dueDate based on payment terms and createdAt date
@@ -77,9 +81,12 @@ const Form = () => {
       setInvociesData({
         ...invoicesData,
         paymentDue: dueDate,
+        status: 'pending',
+        total: 200,
       });
     }
 
+    dispatch(createInvoice(invoicesData));
     console.log(invoicesData);
   };
 

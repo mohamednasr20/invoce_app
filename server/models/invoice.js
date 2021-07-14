@@ -6,15 +6,15 @@ const itemSchema = mongoose.Schema({
     required: true,
   },
   quantity: {
-    type: Number,
+    type: String,
     required: true,
   },
   price: {
-    type: Number,
+    type: String,
     required: true,
   },
   total: {
-    type: Number,
+    type: String,
     required: true,
   },
 });

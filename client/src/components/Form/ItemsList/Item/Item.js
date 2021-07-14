@@ -20,8 +20,8 @@ const Item = ({ item, handleChangeItem }) => {
       </Grid>
       <Grid item xs={2}>
         <TextField
-          name="qty"
-          value={item.qty}
+          name="quantity"
+          value={item.quantity}
           variant="outlined"
           size="small"
           onChange={(e) => handleChangeItem(e, item)}
@@ -40,7 +40,9 @@ const Item = ({ item, handleChangeItem }) => {
         <TextField
           name="total"
           value={
-            item.qty && item.price ? Number(item.qty) * Number(item.price) : ''
+            item.quantity && item.price
+              ? Number(item.quantity) * Number(item.price)
+              : ''
           }
           variant="outlined"
           size="small"

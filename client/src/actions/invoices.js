@@ -8,3 +8,12 @@ export const getInvoices = () => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const createInvoice = (invoice) => async (dispatch) => {
+  try {
+    const { data } = await api.createInvoice(invoice);
+    dispatch({ type: 'CREATEINVOICE', payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};

@@ -61,12 +61,34 @@ const Form = () => {
     console.log(newItems);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // calculate dueDate based on payment terms and createdAt date
+
+    const date = new Date(invoicesData.createdAt);
+    const dueDate = new Date(
+      date.setDate(date.getDate() + invoicesData.paymentTerms)
+    )
+      .toISOString()
+      .split('T')[0];
+
+    if (dueDate) {
+      setInvociesData({
+        ...invoicesData,
+        paymentDue: dueDate,
+      });
+    }
+
+    console.log(invoicesData);
+  };
+
   return (
     <Container className={classes.root}>
       <Paper className={classes.paper}>
         <Typography variant="h4">New Invoice</Typography>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <Typography variant="h5" className={classes.heading} color="primary">
             Bill From
           </Typography>
@@ -318,6 +340,7 @@ const Form = () => {
                 className={classes.btn}
                 variant="contained"
                 color="primary"
+                type="submit"
               >
                 Save And Send
               </Button>

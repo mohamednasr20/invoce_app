@@ -19,6 +19,8 @@ const Form = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const [submit, setSubmit] = useState('save');
+
   const [invoicesData, setInvociesData] = useState({
     createdAt: '',
     paymentDue: '',
@@ -40,7 +42,7 @@ const Form = () => {
       country: '',
     },
     items: [],
-    total: '',
+    total: 0,
   });
 
   const addItemField = () => {
@@ -48,18 +50,33 @@ const Form = () => {
       ...invoicesData,
       items: [
         ...invoicesData.items,
-        { id: uuidv4(), name: '', quantity: '', price: '', total: '30' },
+        {
+          id: uuidv4(),
+          name: '',
+          quantity: 0,
+          price: 0,
+          total: 0,
+        },
       ],
     });
   };
 
   const handleChangeItemValue = (e, i) => {
-    const name = e.target.name;
+    const inputName = e.target.name;
     let value = e.target.value;
 
     const newItems = invoicesData.items.map((item, idx) =>
-      idx === invoicesData.items.indexOf(i) ? { ...item, [name]: value } : item
+      idx === invoicesData.items.indexOf(i)
+        ? inputName === 'name'
+          ? { ...item, name: value }
+          : {
+              ...item,
+              [inputName]: Number(value),
+            }
+        : item
     );
+
+    newItems.map((item) => ({ ...item, total: item.price * item.quantity }));
 
     setInvociesData({ ...invoicesData, items: newItems });
     console.log(newItems);
@@ -68,26 +85,41 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // calculate dueDate based on payment terms and createdAt date
+    if (submit === 'save') {
+      // calculate dueDate based on payment terms and createdAt date
 
-    const date = new Date(invoicesData.createdAt);
-    const dueDate = new Date(
-      date.setDate(date.getDate() + invoicesData.paymentTerms)
-    )
-      .toISOString()
-      .split('T')[0];
+      const date = new Date(invoicesData.createdAt);
+      const dueDate = new Date(
+        date.setDate(date.getDate() + invoicesData.paymentTerms)
+      )
+        .toISOString()
+        .split('T')[0];
 
-    if (dueDate) {
+      // update total items prices based on quantity
+
+      const updatedItems = invoicesData.items.map((item) => ({
+        ...item,
+        total: item.price * item.quantity,
+      }));
+
+      let total = updatedItems
+        .map((item) => Number(item.total))
+        .reduce((acc, currentValue) => acc + currentValue);
+
       setInvociesData({
         ...invoicesData,
         paymentDue: dueDate,
         status: 'pending',
-        total: 200,
+        items: updatedItems,
+        total: total,
       });
-    }
 
-    dispatch(createInvoice(invoicesData));
-    console.log(invoicesData);
+      setSubmit('send');
+    } else {
+      dispatch(createInvoice(invoicesData));
+      console.log(invoicesData);
+      setSubmit('save');
+    }
   };
 
   return (
@@ -349,7 +381,7 @@ const Form = () => {
                 color="primary"
                 type="submit"
               >
-                Save And Send
+                {submit}
               </Button>
             </div>
           </div>

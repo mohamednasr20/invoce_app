@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ItemsList from './ItemsList/ItemsList';
 import { createInvoice } from '../../actions/invoices';
 import { useDispatch } from 'react-redux';
@@ -45,6 +45,14 @@ const Form = () => {
     total: 0,
   });
 
+  useEffect(() => {
+    if (invoicesData.paymentDue && invoicesData.total) {
+      submitNewInvoices(invoicesData);
+    } else {
+      console.log('wait');
+    }
+  }, [invoicesData]);
+
   const addItemField = () => {
     setInvociesData({
       ...invoicesData,
@@ -82,44 +90,43 @@ const Form = () => {
     console.log(newItems);
   };
 
+  const submitNewInvoices = (data) => {
+    dispatch(createInvoice(data));
+    console.log(data);
+  };
+
+  const updateInvoiceDataWhenSubmit = () => {
+    const date = new Date(invoicesData.createdAt);
+    const dueDate = new Date(
+      date.setDate(date.getDate() + invoicesData.paymentTerms)
+    )
+      .toISOString()
+      .split('T')[0];
+
+    // update total items prices based on quantity
+
+    const updatedItems = invoicesData.items.map((item) => ({
+      ...item,
+      total: item.price * item.quantity,
+    }));
+
+    let total = updatedItems
+      .map((item) => Number(item.total))
+      .reduce((acc, currentValue) => acc + currentValue);
+
+    setInvociesData({
+      ...invoicesData,
+      paymentDue: dueDate,
+      status: 'pending',
+      items: updatedItems,
+      total: total,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (submit === 'save') {
-      // calculate dueDate based on payment terms and createdAt date
-
-      const date = new Date(invoicesData.createdAt);
-      const dueDate = new Date(
-        date.setDate(date.getDate() + invoicesData.paymentTerms)
-      )
-        .toISOString()
-        .split('T')[0];
-
-      // update total items prices based on quantity
-
-      const updatedItems = invoicesData.items.map((item) => ({
-        ...item,
-        total: item.price * item.quantity,
-      }));
-
-      let total = updatedItems
-        .map((item) => Number(item.total))
-        .reduce((acc, currentValue) => acc + currentValue);
-
-      setInvociesData({
-        ...invoicesData,
-        paymentDue: dueDate,
-        status: 'pending',
-        items: updatedItems,
-        total: total,
-      });
-
-      setSubmit('send');
-    } else {
-      dispatch(createInvoice(invoicesData));
-      console.log(invoicesData);
-      setSubmit('save');
-    }
+    updateInvoiceDataWhenSubmit();
   };
 
   return (

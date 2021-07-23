@@ -19,8 +19,6 @@ const Form = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const [submit, setSubmit] = useState('save');
-
   const [invoicesData, setInvociesData] = useState({
     createdAt: '',
     paymentDue: '',
@@ -44,14 +42,6 @@ const Form = () => {
     items: [],
     total: 0,
   });
-
-  useEffect(() => {
-    if (invoicesData.paymentDue && invoicesData.total) {
-      submitNewInvoices(invoicesData);
-    } else {
-      console.log('wait');
-    }
-  }, [invoicesData]);
 
   const addItemField = () => {
     setInvociesData({
@@ -91,8 +81,12 @@ const Form = () => {
   };
 
   const submitNewInvoices = (data) => {
-    dispatch(createInvoice(data));
-    console.log(data);
+    if (invoicesData.paymentDue && invoicesData.total) {
+      dispatch(createInvoice(data));
+      console.log(data);
+    } else {
+      console.log('error');
+    }
   };
 
   const updateInvoiceDataWhenSubmit = () => {
@@ -128,6 +122,10 @@ const Form = () => {
 
     updateInvoiceDataWhenSubmit();
   };
+
+  useEffect(() => {
+    submitNewInvoices(invoicesData);
+  }, [invoicesData]);
 
   return (
     <Container className={classes.root}>
@@ -388,7 +386,7 @@ const Form = () => {
                 color="primary"
                 type="submit"
               >
-                {submit}
+                Save & Add
               </Button>
             </div>
           </div>

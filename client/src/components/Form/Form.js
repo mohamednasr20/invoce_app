@@ -80,15 +80,6 @@ const Form = () => {
     console.log(newItems);
   };
 
-  const submitNewInvoices = (data) => {
-    if (invoicesData.paymentDue && invoicesData.total) {
-      dispatch(createInvoice(data));
-      console.log(data);
-    } else {
-      console.log('error');
-    }
-  };
-
   const updateInvoiceDataWhenSubmit = () => {
     const date = new Date(invoicesData.createdAt);
     const dueDate = new Date(
@@ -124,8 +115,17 @@ const Form = () => {
   };
 
   useEffect(() => {
+    const submitNewInvoices = (data) => {
+      if (invoicesData.paymentDue && invoicesData.total) {
+        dispatch(createInvoice(data));
+        console.log(data);
+      } else {
+        console.log('error');
+      }
+    };
+
     submitNewInvoices(invoicesData);
-  }, [invoicesData]);
+  }, [invoicesData, dispatch]);
 
   return (
     <Container className={classes.root}>

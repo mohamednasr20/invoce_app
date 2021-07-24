@@ -1,12 +1,18 @@
 // eslint-disable-next-line
-export default (invoices = [], action) => {
+
+const initalState = {
+  invoices: [],
+  invoice: {},
+};
+export default (state = initalState, action) => {
   switch (action.type) {
     case 'FETCH_ALL':
-      return action.payload;
-    case 'CREATEINVOICE':
-      return [...invoices, action.payload];
-
+      return { ...state, invoices: action.payload };
+    case 'CREATE_INVOICE':
+      return { ...state, inovices: [...state.invoices, action.payload] };
+    case 'FETCH_INVOICE':
+      return { ...state, invoice: action.payload };
     default:
-      return invoices;
+      return state;
   }
 };

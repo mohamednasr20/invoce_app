@@ -20,7 +20,7 @@ const Invoices = () => {
 
   return (
     <div>
-      <InvoicesNav />
+      <InvoicesNav invoices={invoices} />
       {itemsList}
     </div>
   );

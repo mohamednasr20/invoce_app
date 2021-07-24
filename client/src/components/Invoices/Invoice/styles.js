@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
   },
   status: {
-    color: '#FF8F00',
+    color: ({ invoice }) =>
+      invoice.status === 'pending' ? '#FF8F00' : 'green',
   },
   icon: {
     color: 'blue',

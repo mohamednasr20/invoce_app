@@ -5,7 +5,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import useStyles from './styles';
 
 const Invoice = ({ invoice }) => {
-  const classes = useStyles();
+  const classes = useStyles({ invoice });
 
   const invoiceId = invoice._id.slice(18);
 

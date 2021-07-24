@@ -1,6 +1,7 @@
 import React from 'react';
 import Invoice from './Invoice/Invoice';
 import InvoicesNav from './InvoicesNav/InvoicesNav';
+import EmptyInvoicesList from './EmptyInvoicesList/EmptyInvoicesList';
 import { useSelector } from 'react-redux';
 
 const Invoices = () => {
@@ -14,7 +15,7 @@ const Invoices = () => {
       ))}
     </div>
   ) : (
-    ''
+    <EmptyInvoicesList />
   );
 
   return (

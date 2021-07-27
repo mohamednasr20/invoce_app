@@ -9,10 +9,19 @@ export const getInvoices = () => async (dispatch) => {
   }
 };
 
+export const getInvoice = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchInvoice(id);
+    dispatch({ type: 'FETCH_INVOICE', payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 export const createInvoice = (invoice) => async (dispatch) => {
   try {
     const { data } = await api.createInvoice(invoice);
-    dispatch({ type: 'CREATEINVOICE', payload: data });
+    dispatch({ type: 'CREATE_INVOICE', payload: data });
   } catch (error) {
     console.log(error.message);
   }

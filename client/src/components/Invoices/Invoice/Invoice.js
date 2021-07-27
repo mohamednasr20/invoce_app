@@ -2,10 +2,13 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { useDispatch } from 'react-redux';
 import useStyles from './styles';
+import { getInvoice } from '../../../actions/invoices';
 
 const Invoice = ({ invoice }) => {
   const classes = useStyles({ invoice });
+  const dispatch = useDispatch();
 
   const invoiceId = invoice._id.slice(18);
 
@@ -28,7 +31,10 @@ const Invoice = ({ invoice }) => {
           {invoice.status}
         </Grid>
         <Grid item xs={1} className={classes.icon}>
-          <ArrowForwardIosIcon />
+          <ArrowForwardIosIcon
+            fontSize="small"
+            onClick={() => dispatch(getInvoice(invoice._id))}
+          />
         </Grid>
       </Grid>
     </Paper>

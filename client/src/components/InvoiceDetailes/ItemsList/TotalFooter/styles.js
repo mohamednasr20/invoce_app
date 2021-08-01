@@ -2,19 +2,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 30,
-    padding: '30px 50px',
-  },
-  flex: {
     display: 'flex',
     justifyContent: 'space-between',
-    margin: '40px 0',
+    background: '#000000',
+    color: '#ffffff',
+    marginTop: 20,
+    padding: '30px 20px',
+    borderRadius: 8,
   },
-  paymentDue: {
-    marginTop: 30,
-  },
-  label: {
-    marginBottom: 10,
+  total: {
+    fontSize: 24,
   },
 }));
 

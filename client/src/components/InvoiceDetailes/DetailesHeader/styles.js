@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: '20px 0',
-    padding: '30px 15px',
+    padding: '30px',
     borderRadius: 8,
   },
   statusFlex: {

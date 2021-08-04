@@ -5,7 +5,7 @@ import EmptyInvoicesList from './EmptyInvoicesList/EmptyInvoicesList';
 import { useSelector } from 'react-redux';
 
 const Invoices = () => {
-  const invoices = useSelector((state) => state.invoices.invoices);
+  const invoices = useSelector((state) => state.GlobalState.invoices);
 
   console.log(invoices);
   const itemsList = invoices.length ? (

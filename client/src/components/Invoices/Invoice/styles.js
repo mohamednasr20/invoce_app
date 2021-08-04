@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
   },
   lightFont: {
-    color: '#888EB0',
+    color: theme.palette.text.secondary,
     fontWeight: 500,
   },
   status: {
@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
       invoice.status === 'pending' ? '#FF8F00' : 'green',
   },
   icon: {
-    color: 'blue',
     cursor: 'pointer',
   },
 }));

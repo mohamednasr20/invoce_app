@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     textAlign: 'center',
     alignItems: 'center',
-    // width: 103,
-    // height: 103,
-    background: '#7C5DFA',
+    width: 103,
+    height: 103,
+    background: theme.palette.primary.main,
     borderRadius: ' 0 20px 20px 0',
     marginBottom: 'auto',
     borderBottomRightRadius: 20,
@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 20,
     display: 'block',
     margin: 'auto',
+    cursor: 'pointer',
   },
 
   avatar: {

@@ -34,6 +34,7 @@ const Invoice = ({ invoice }) => {
           <ArrowForwardIosIcon
             fontSize="small"
             onClick={() => dispatch(getInvoice(invoice._id))}
+            color="primary"
           />
         </Grid>
       </Grid>

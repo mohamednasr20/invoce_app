@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import invoices from './invoices';
+import GlobalState from './GlobalState';
 
 // eslint-disable-next-line
 
 export default combineReducers({
-  invoices,
+  GlobalState,
 });

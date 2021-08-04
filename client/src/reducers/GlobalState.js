@@ -3,7 +3,10 @@
 const initalState = {
   invoices: [],
   invoice: {},
+  isDarkMode: false,
 };
+
+// eslint-disable-next-line
 export default (state = initalState, action) => {
   switch (action.type) {
     case 'FETCH_ALL':
@@ -12,6 +15,8 @@ export default (state = initalState, action) => {
       return { ...state, inovices: [...state.invoices, action.payload] };
     case 'FETCH_INVOICE':
       return { ...state, invoice: action.payload };
+    case 'SWITCH_THEME':
+      return { ...state, isDarkMode: !state.isDarkMode };
     default:
       return state;
   }

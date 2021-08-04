@@ -14,7 +14,9 @@ const InvoicesNav = ({ invoices }) => {
   return (
     <div className={classes.root}>
       <div>
-        <Typography variant="h4">Invoices</Typography>
+        <Typography variant="h4" color="textPrimary">
+          Invoices
+        </Typography>
         <Typography variant="caption">
           There are {invoices.length} total invoices
         </Typography>

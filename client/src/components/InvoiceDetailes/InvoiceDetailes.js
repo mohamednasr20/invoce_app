@@ -1,4 +1,4 @@
-import React, { isValidElement } from 'react';
+import React from 'react';
 import DetailesHeader from './DetailesHeader/DetailesHeader';
 import DetailesBody from './DetailesBody/DetailesBody';
 import ItemsList from './ItemsList/ItemsList';
@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import useStyles from './styles';
 
 const InvoiceDetailes = () => {
-  const invoice = useSelector((state) => state.invoices.invoice);
+  const invoice = useSelector((state) => state.GlobalState.invoice);
   const classes = useStyles();
 
   return (

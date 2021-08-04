@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
     marginRight: 30,
   },
+
+  filterLabel: {
+    fontSize: 12,
+  },
   icon: {
     marginRight: 10,
   },

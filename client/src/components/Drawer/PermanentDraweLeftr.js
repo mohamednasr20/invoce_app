@@ -17,7 +17,6 @@ const PermanentDrawerLeft = () => {
 
   const toggleMode = () => {
     dispatch(switchTheme());
-    console.log(isDarkMode);
   };
 
   return (

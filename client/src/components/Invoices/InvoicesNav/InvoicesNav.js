@@ -17,13 +17,18 @@ const InvoicesNav = ({ invoices }) => {
         <Typography variant="h4" color="textPrimary">
           Invoices
         </Typography>
-        <Typography variant="caption">
+        <Typography variant="caption" color="textSecondary">
           There are {invoices.length} total invoices
         </Typography>
       </div>
       <div>
         <FormControl className={classes.formControl}>
-          <InputLabel id="customized-select-label">Name</InputLabel>
+          <InputLabel
+            id="customized-select-label"
+            className={classes.filterLabel}
+          >
+            Filter By Name
+          </InputLabel>
           <Select
             className={classes.select}
             labelId="customized-select-label"

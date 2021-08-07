@@ -1,5 +1,7 @@
-import Typography from '@material-ui/core/Typography';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFormShow } from '../../../actions/themeMode';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -10,6 +12,14 @@ import useStyles from './styles';
 
 const InvoicesNav = ({ invoices }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const showForm = useSelector((state) => state.GlobalState.showForm);
+
+  const addNewInvoice = () => {
+    if (!showForm) {
+      dispatch(toggleFormShow());
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -43,7 +53,12 @@ const InvoicesNav = ({ invoices }) => {
             <MenuItem value={'default'}>default</MenuItem>
           </Select>
         </FormControl>
-        <Button className={classes.btn} variant="contained" color="primary">
+        <Button
+          className={classes.btn}
+          variant="contained"
+          color="primary"
+          onClick={addNewInvoice}
+        >
           <AddCircleIcon className={classes.icon} />
           New Invoice
         </Button>

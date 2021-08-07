@@ -2,7 +2,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    background: 'rgba(0, 0 , 0 , 0.7)',
+  },
+  formContainer: {
     width: 504,
+    marginLeft: '80px',
   },
   flex: {
     display: 'flex',

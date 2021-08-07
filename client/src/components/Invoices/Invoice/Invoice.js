@@ -5,6 +5,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';
 import { getInvoice } from '../../../actions/invoices';
+import { Link } from 'react-router-dom';
 
 const Invoice = ({ invoice }) => {
   const classes = useStyles({ invoice });
@@ -31,11 +32,13 @@ const Invoice = ({ invoice }) => {
           {invoice.status}
         </Grid>
         <Grid item xs={1} className={classes.icon}>
-          <ArrowForwardIosIcon
-            fontSize="small"
-            onClick={() => dispatch(getInvoice(invoice._id))}
-            color="primary"
-          />
+          <Link to={`/invoices/${invoice._id}`}>
+            <ArrowForwardIosIcon
+              fontSize="small"
+              color="primary"
+              onClick={() => dispatch(getInvoice(invoice._id))}
+            />
+          </Link>
         </Grid>
       </Grid>
     </Paper>

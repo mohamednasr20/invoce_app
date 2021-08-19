@@ -24,7 +24,7 @@ const App = () => {
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <Router>
-        <Box bgcolor="secondary.main" className={classes.root}>
+        <Box bgcolor="info.main" className={classes.root}>
           <Container className={classes.container}>
             <PermanentDrawerLeft />
             <Switch>

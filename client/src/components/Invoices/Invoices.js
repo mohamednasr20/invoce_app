@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 const Invoices = () => {
   const invoices = useSelector((state) => state.GlobalState.invoices);
 
-  console.log(invoices);
   const itemsList = invoices.length ? (
     <div>
       {invoices.map((invoice) => (

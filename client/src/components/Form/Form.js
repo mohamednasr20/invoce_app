@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ItemsList from './ItemsList/ItemsList';
 import { createInvoice } from '../../actions/invoices';
 import { useDispatch, useSelector } from 'react-redux';
+import { toggleFormShow } from '../../actions/themeMode';
 import {
   Container,
   Typography,
@@ -394,7 +395,12 @@ const Form = () => {
               Add New Item
             </Button>
             <div className={classes.btnGroup}>
-              <Button variant="contained">Discard</Button>
+              <Button
+                variant="contained"
+                onClick={() => dispatch(toggleFormShow())}
+              >
+                Discard
+              </Button>
               <div className={classes.btnRight}>
                 <Button className={classes.btn} variant="outlined">
                   Save As Draft

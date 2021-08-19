@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import DetailesHeader from './DetailesHeader/DetailesHeader';
 import DetailesBody from './DetailesBody/DetailesBody';
-import ItemsList from './ItemsList/ItemsList';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
@@ -26,7 +25,6 @@ const InvoiceDetailes = () => {
           </Button>
           <DetailesHeader invoice={invoice} />
           <DetailesBody invoice={invoice} />
-          <ItemsList items={invoice.items} total={invoice.total} />
         </div>
       ) : null}
     </div>

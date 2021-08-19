@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     background: 'rgba(0, 0 , 0 , 0.7)',
   },
   formContainer: {
-    width: 504,
+    width: '504px',
     marginLeft: '80px',
   },
   flex: {

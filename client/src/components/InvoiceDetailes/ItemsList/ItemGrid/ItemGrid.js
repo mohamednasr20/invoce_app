@@ -9,7 +9,7 @@ const ItemGrid = ({ item }) => {
   return (
     <Grid container className={classes.root}>
       <Grid item xs={6}>
-        <Typography variant="subtitle1">{item.name}</Typography>
+        <Typography variant="subtitle1">{item.name} </Typography>
       </Grid>
       <Grid item xs={2}>
         <Typography variant="subtitle1">{item.quantity}</Typography>

@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 242,
     height: '80vh ',
     textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
 
   img: {

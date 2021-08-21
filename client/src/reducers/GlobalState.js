@@ -20,6 +20,7 @@ export default (state = initalState, action) => {
       return { ...state, isDarkMode: !state.isDarkMode };
     case 'TOGGLE_FORM':
       return { ...state, showForm: !state.showForm };
+
     default:
       return state;
   }

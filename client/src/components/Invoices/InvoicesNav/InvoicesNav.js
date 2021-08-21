@@ -10,7 +10,7 @@ import Select from '@material-ui/core/Select';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import useStyles from './styles';
 
-const InvoicesNav = ({ invoices }) => {
+const InvoicesNav = ({ invoices, status, changeStatus }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const showForm = useSelector((state) => state.GlobalState.showForm);
@@ -43,14 +43,15 @@ const InvoicesNav = ({ invoices }) => {
             className={classes.select}
             labelId="customized-select-label"
             id="customized-select"
-            value={''}
+            value={status}
+            onChange={changeStatus}
           >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
             <MenuItem value={'pending'}>pending</MenuItem>
             <MenuItem value={'paid'}>paid</MenuItem>
-            <MenuItem value={'default'}>default</MenuItem>
+            <MenuItem value={'draft'}>Draft</MenuItem>
           </Select>
         </FormControl>
         <Button

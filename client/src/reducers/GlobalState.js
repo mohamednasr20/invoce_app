@@ -16,6 +16,13 @@ export default (state = initalState, action) => {
       return { ...state, inovices: [...state.invoices, action.payload] };
     case 'FETCH_INVOICE':
       return { ...state, invoice: action.payload };
+    case 'DELETE_INVOICE':
+      return {
+        state,
+        invoices: state.invoices.filter(
+          (invoice) => invoice._id !== action.payload
+        ),
+      };
     case 'SWITCH_THEME':
       return { ...state, isDarkMode: !state.isDarkMode };
     case 'TOGGLE_FORM':

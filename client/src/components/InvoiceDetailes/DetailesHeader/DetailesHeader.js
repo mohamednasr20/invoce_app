@@ -2,9 +2,19 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles';
 import Paper from '@material-ui/core/Paper';
+import { deleteInvoice } from '../../../actions/invoices';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const DetailesHeader = ({ invoice }) => {
   const classes = useStyles({ invoice });
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const onDeleteInvoice = (id) => {
+    dispatch(deleteInvoice(id));
+    history.push('/');
+  };
 
   return (
     <Paper className={classes.root}>
@@ -17,7 +27,12 @@ const DetailesHeader = ({ invoice }) => {
         <Button className={classes.btn} variant="contained">
           Edit
         </Button>
-        <Button className={classes.btn} variant="contained" color="secondary">
+        <Button
+          className={classes.btn}
+          variant="contained"
+          color="secondary"
+          onClick={() => onDeleteInvoice(invoice._id)}
+        >
           Delete
         </Button>
 

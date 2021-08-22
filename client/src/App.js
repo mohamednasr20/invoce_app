@@ -16,10 +16,11 @@ const App = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isDarkMode = useSelector((state) => state.GlobalState.isDarkMode);
+  const invoices = useSelector((state) => state.GlobalState.invoices);
 
   useEffect(() => {
     dispatch(getInvoices());
-  }, [dispatch]);
+  }, [invoices, dispatch]);
 
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>

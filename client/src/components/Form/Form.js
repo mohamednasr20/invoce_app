@@ -114,6 +114,7 @@ const Form = () => {
     e.preventDefault();
 
     updateInvoiceDataWhenSubmit();
+    dispatch(toggleFormShow());
   };
 
   useEffect(() => {

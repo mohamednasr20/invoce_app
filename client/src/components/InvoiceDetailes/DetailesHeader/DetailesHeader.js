@@ -3,17 +3,18 @@ import Button from '@material-ui/core/Button';
 import useStyles from './styles';
 import Paper from '@material-ui/core/Paper';
 import { deleteInvoice } from '../../../actions/invoices';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, Redirect } from 'react-router-dom';
 
 const DetailesHeader = ({ invoice }) => {
   const classes = useStyles({ invoice });
   const dispatch = useDispatch();
   const history = useHistory();
+  const invoices = useSelector((state) => state.GlobalState.invoices);
 
   const onDeleteInvoice = (id) => {
-    dispatch(deleteInvoice(id));
     history.push('/');
+    dispatch(deleteInvoice(id));
   };
 
   return (

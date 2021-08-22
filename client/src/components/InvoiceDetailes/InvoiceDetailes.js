@@ -18,7 +18,7 @@ const InvoiceDetailes = () => {
 
   return (
     <div>
-      {invoice._id ? (
+      {invoice && invoice._id ? (
         <div className={classes.root}>
           <Button onClick={onGoBack}>
             <ArrowBackIosIcon fontSize="small" /> Go Back

@@ -20,6 +20,12 @@ const Form = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const showForm = useSelector((state) => state.GlobalState.showForm);
+  const currentId = useSelector((state) => state.GlobalState.currentId);
+  const invoice = useSelector((state) =>
+    currentId
+      ? state.GlobalState.invoices.find((i) => i._id === currentId)
+      : null
+  );
 
   const [invoicesData, setInvociesData] = useState({
     createdAt: '',
@@ -28,7 +34,7 @@ const Form = () => {
     paymentTerms: '',
     clientName: '',
     clientEmail: '',
-    status: '',
+    status: 'pending',
     senderAddress: {
       street: '',
       city: '',
@@ -72,63 +78,39 @@ const Form = () => {
           : {
               ...item,
               [inputName]: Number(value),
+              total:
+                inputName === 'price'
+                  ? value * item.quantity
+                  : value * item.price,
             }
         : item
     );
 
-    newItems.map((item) => ({ ...item, total: item.price * item.quantity }));
-
-    setInvociesData({ ...invoicesData, items: newItems });
-    console.log(newItems);
-  };
-
-  const updateInvoiceDataWhenSubmit = () => {
-    const date = new Date(invoicesData.createdAt);
-    const dueDate = new Date(
-      date.setDate(date.getDate() + invoicesData.paymentTerms)
-    )
-      .toISOString()
-      .split('T')[0];
-
-    // update total items prices based on quantity
-
-    const updatedItems = invoicesData.items.map((item) => ({
-      ...item,
-      total: item.price * item.quantity,
-    }));
-
-    let total = updatedItems
-      .map((item) => Number(item.total))
-      .reduce((acc, currentValue) => acc + currentValue);
-
     setInvociesData({
       ...invoicesData,
-      paymentDue: dueDate,
-      status: 'pending',
-      items: updatedItems,
-      total: total,
+      items: newItems,
+      total: newItems
+        .map((item) => Number(item.total))
+        .reduce((acc, currentValue) => acc + currentValue),
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    updateInvoiceDataWhenSubmit();
+    dispatch(createInvoice(invoicesData));
     dispatch(toggleFormShow());
+    console.log(invoicesData);
   };
 
-  useEffect(() => {
-    const submitNewInvoices = (data) => {
-      if (invoicesData.paymentDue && invoicesData.total) {
-        dispatch(createInvoice(data));
-        console.log(data);
-      } else {
-        console.log('error');
-      }
-    };
+  const getDueDate = (created, paymentTerms) => {
+    const date = new Date(created);
+    const dueDate = new Date(date.setDate(date.getDate() + paymentTerms))
+      .toISOString()
+      .split('T')[0];
 
-    submitNewInvoices(invoicesData);
-  }, [invoicesData, dispatch]);
+    return dueDate;
+  };
 
   return (
     <div
@@ -137,7 +119,9 @@ const Form = () => {
     >
       <Container className={classes.formContainer}>
         <Paper className={classes.paper}>
-          <Typography variant="h4">New Invoice</Typography>
+          <Typography variant="h4">
+            {currentId ? `Edit #${currentId.slice(18)}` : 'New Invoice'}
+          </Typography>
 
           <form onSubmit={handleSubmit}>
             <Typography
@@ -150,7 +134,7 @@ const Form = () => {
             <div className={classes.label}>Street Address</div>
             <TextField
               name="senderStreet"
-              value={invoicesData.senderAddress.streetAddress}
+              value={invoicesData.senderAddress.street}
               variant="outlined"
               size="small"
               onChange={(e) =>
@@ -335,12 +319,15 @@ const Form = () => {
                   variant="outlined"
                   size="small"
                   fullWidth
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setInvociesData({
                       ...invoicesData,
                       createdAt: e.target.value,
-                    })
-                  }
+                      paymentDue: invoicesData.paymentTerms
+                        ? getDueDate(e.target.value, invoicesData.paymentTerms)
+                        : '',
+                    });
+                  }}
                 />
               </div>
               <div>
@@ -348,12 +335,15 @@ const Form = () => {
 
                 <Select
                   value={invoicesData.paymentTerms}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setInvociesData({
                       ...invoicesData,
                       paymentTerms: e.target.value,
-                    })
-                  }
+                      paymentDue: invoicesData.createdAt
+                        ? getDueDate(invoicesData.createdAt, e.target.value)
+                        : '',
+                    });
+                  }}
                   autoWidth
                 >
                   <MenuItem value={''}>

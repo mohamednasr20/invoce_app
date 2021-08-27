@@ -5,6 +5,7 @@ const initalState = {
   invoice: {},
   isDarkMode: false,
   showForm: false,
+  currentId: null,
 };
 
 // eslint-disable-next-line
@@ -27,7 +28,8 @@ export default (state = initalState, action) => {
       return { ...state, isDarkMode: !state.isDarkMode };
     case 'TOGGLE_FORM':
       return { ...state, showForm: !state.showForm };
-
+    case 'CURRENT_ID':
+      return { ...state, currentId: action.payload };
     default:
       return state;
   }

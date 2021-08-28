@@ -21,6 +21,7 @@ const DetailesHeader = () => {
   const onUpdateInvoice = (id) => {
     dispatch(toggleFormShow());
     dispatch(handleCurrentId(id));
+    history.push('/');
   };
 
   return (

@@ -37,6 +37,10 @@ export default (state = initalState, action) => {
         invoices: state.invoices.map((invoice) =>
           invoice._id === action.payload._id ? action.payload : invoice
         ),
+        invoice: {
+          ...state.invoice,
+          status: 'paid',
+        },
       };
     case 'SWITCH_THEME':
       return { ...state, isDarkMode: !state.isDarkMode };

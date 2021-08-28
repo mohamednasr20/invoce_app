@@ -12,7 +12,6 @@ import {
   Button,
   Paper,
 } from '@material-ui/core';
-import { v4 as uuidv4 } from 'uuid';
 import AddIcon from '@material-ui/icons/Add';
 import useStyles from './styles';
 
@@ -59,7 +58,6 @@ const Form = () => {
       items: [
         ...invoiceData.items,
         {
-          _id: uuidv4(),
           name: '',
           quantity: 0,
           price: 0,

@@ -23,7 +23,7 @@ export const createInvoice = (invoice) => async (dispatch) => {
     const { data } = await api.createInvoice(invoice);
     dispatch({ type: 'CREATE_INVOICE', payload: data });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 };
 

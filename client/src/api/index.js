@@ -8,3 +8,5 @@ export const fetchInvoice = (id) => axios.get(`${url}/${id}`);
 export const deleteInvoice = (id) => axios.delete(`${url}/${id}`);
 export const updateInvoice = (id, updatedInvoice) =>
   axios.put(`${url}/${id}`, updatedInvoice);
+export const updateInvoiceState = (id) =>
+  axios.patch(`${url}/${id}/invoiceStatus`);

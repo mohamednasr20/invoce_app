@@ -27,7 +27,7 @@ const Form = () => {
       : null
   );
 
-  const [invoiceData, setInvocieData] = useState({
+  const data = {
     createdAt: '',
     paymentDue: '',
     description: '',
@@ -49,14 +49,9 @@ const Form = () => {
     },
     items: [],
     total: 0,
-  });
+  };
 
-  useEffect(() => {
-    if (invoice) {
-      setInvocieData(invoice);
-    }
-    // eslint-disable-next-line
-  }, [currentId]);
+  const [invoiceData, setInvocieData] = useState(data);
 
   const addItemField = () => {
     setInvocieData({
@@ -64,7 +59,7 @@ const Form = () => {
       items: [
         ...invoiceData.items,
         {
-          id: uuidv4(),
+          _id: uuidv4(),
           name: '',
           quantity: 0,
           price: 0,
@@ -102,17 +97,9 @@ const Form = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (currentId) {
-      dispatch(updateInvoice(currentId, invoiceData));
-      dispatch(handleCurrentId(null));
-    } else {
-      dispatch(createInvoice(invoiceData));
-    }
-
-    dispatch(toggleFormShow());
+  const clear = () => {
+    dispatch(handleCurrentId(null));
+    setInvocieData(data);
   };
 
   const getDueDate = (created, paymentTerms) => {
@@ -124,6 +111,26 @@ const Form = () => {
     return dueDate;
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (currentId) {
+      dispatch(updateInvoice(currentId, invoiceData));
+      dispatch(handleCurrentId(null));
+    } else {
+      dispatch(createInvoice(invoiceData));
+    }
+
+    dispatch(toggleFormShow());
+    clear();
+  };
+
+  useEffect(() => {
+    if (invoice) {
+      setInvocieData(invoice);
+    }
+    // eslint-disable-next-line
+  }, [currentId]);
   return (
     <div
       style={{ display: showForm ? 'block' : 'none' }}

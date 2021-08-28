@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles';
 import Paper from '@material-ui/core/Paper';
-import { deleteInvoice } from '../../../actions/invoices';
+import { deleteInvoice, updateInvoiceStatus } from '../../../actions/invoices';
 import { toggleFormShow, handleCurrentId } from '../../../actions/themeMode';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -47,7 +47,12 @@ const DetailesHeader = () => {
           Delete
         </Button>
 
-        <Button className={classes.btn} variant="contained" color="primary">
+        <Button
+          className={classes.btn}
+          variant="contained"
+          color="primary"
+          onClick={() => dispatch(updateInvoiceStatus(invoice._id))}
+        >
           Mark As Paid
         </Button>
       </div>

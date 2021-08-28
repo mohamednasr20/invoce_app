@@ -31,6 +31,13 @@ export default (state = initalState, action) => {
           (invoice) => invoice._id !== action.payload
         ),
       };
+    case 'INVOICE_STATUS':
+      return {
+        ...state,
+        invoices: state.invoices.map((invoice) =>
+          invoice._id === action.payload._id ? action.payload : invoice
+        ),
+      };
     case 'SWITCH_THEME':
       return { ...state, isDarkMode: !state.isDarkMode };
     case 'TOGGLE_FORM':

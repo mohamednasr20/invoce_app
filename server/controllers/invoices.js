@@ -56,3 +56,18 @@ export const deleteInvocie = async (req, res) => {
 
   res.json({ message: 'Invoice Deleted Successfully' });
 };
+
+export const invoiceStatus = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No post with id: ${id}`);
+
+  const updatedInvoice = await Invoice.findByIdAndUpdate(
+    id,
+    { status: 'paid' },
+    { new: true }
+  );
+
+  res.json(updatedInvoice);
+};

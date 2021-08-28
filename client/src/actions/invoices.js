@@ -44,3 +44,12 @@ export const updateInvoice = (id, invoice) => async (dispatch) => {
     console.log(error.message);
   }
 };
+
+export const updateInvoiceStatus = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.updateInvoiceState(id);
+    dispatch({ type: 'INVOICE_STATUS', payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};

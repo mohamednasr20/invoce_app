@@ -16,18 +16,18 @@ import { v4 as uuidv4 } from 'uuid';
 import AddIcon from '@material-ui/icons/Add';
 import useStyles from './styles';
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const showForm = useSelector((state) => state.GlobalState.showForm);
-  const currentId = useSelector((state) => state.GlobalState.currentId);
+  // const currentId = useSelector((state) => state.GlobalState.currentId);
   const invoice = useSelector((state) =>
     currentId
-      ? state.GlobalState.invoices.find((i) => i._id === currentId)
+      ? state.GlobalState.invoices.find((invoice) => invoice._id === currentId)
       : null
   );
 
-  const [invoicesData, setInvociesData] = useState({
+  const [invoiceData, setInvocieData] = useState({
     createdAt: '',
     paymentDue: '',
     description: '',
@@ -52,10 +52,10 @@ const Form = () => {
   });
 
   const addItemField = () => {
-    setInvociesData({
-      ...invoicesData,
+    setInvocieData({
+      ...invoiceData,
       items: [
-        ...invoicesData.items,
+        ...invoiceData.items,
         {
           id: uuidv4(),
           name: '',
@@ -71,8 +71,8 @@ const Form = () => {
     const inputName = e.target.name;
     let value = e.target.value;
 
-    const newItems = invoicesData.items.map((item, idx) =>
-      idx === invoicesData.items.indexOf(i)
+    const newItems = invoiceData.items.map((item, idx) =>
+      idx === invoiceData.items.indexOf(i)
         ? inputName === 'name'
           ? { ...item, name: value }
           : {
@@ -86,8 +86,8 @@ const Form = () => {
         : item
     );
 
-    setInvociesData({
-      ...invoicesData,
+    setInvocieData({
+      ...invoiceData,
       items: newItems,
       total: newItems
         .map((item) => Number(item.total))
@@ -98,9 +98,8 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(createInvoice(invoicesData));
+    dispatch(createInvoice(invoiceData));
     dispatch(toggleFormShow());
-    console.log(invoicesData);
   };
 
   const getDueDate = (created, paymentTerms) => {
@@ -111,6 +110,10 @@ const Form = () => {
 
     return dueDate;
   };
+
+  useEffect(() => {
+    if (invoice) setInvocieData(invoice);
+  }, [invoice]);
 
   return (
     <div
@@ -134,14 +137,14 @@ const Form = () => {
             <div className={classes.label}>Street Address</div>
             <TextField
               name="senderStreet"
-              value={invoicesData.senderAddress.street}
+              value={invoiceData.senderAddress.street}
               variant="outlined"
               size="small"
               onChange={(e) =>
-                setInvociesData({
-                  ...invoicesData,
+                setInvocieData({
+                  ...invoiceData,
                   senderAddress: {
-                    ...invoicesData.senderAddress,
+                    ...invoiceData.senderAddress,
                     street: e.target.value,
                   },
                 })
@@ -153,14 +156,14 @@ const Form = () => {
                 <div className={classes.label}>City</div>
                 <TextField
                   name="senderCity"
-                  value={invoicesData.senderAddress.city}
+                  value={invoiceData.senderAddress.city}
                   variant="outlined"
                   size="small"
                   onChange={(e) =>
-                    setInvociesData({
-                      ...invoicesData,
+                    setInvocieData({
+                      ...invoiceData,
                       senderAddress: {
-                        ...invoicesData.senderAddress,
+                        ...invoiceData.senderAddress,
                         city: e.target.value,
                       },
                     })
@@ -171,14 +174,14 @@ const Form = () => {
                 <div className={classes.label}>Post Code</div>
                 <TextField
                   name="senderPostCode"
-                  vlaue={invoicesData.senderAddress.postCode}
+                  vlaue={invoiceData.senderAddress.postCode}
                   variant="outlined"
                   size="small"
                   onChange={(e) =>
-                    setInvociesData({
-                      ...invoicesData,
+                    setInvocieData({
+                      ...invoiceData,
                       senderAddress: {
-                        ...invoicesData.senderAddress,
+                        ...invoiceData.senderAddress,
                         postCode: e.target.value,
                       },
                     })
@@ -189,14 +192,14 @@ const Form = () => {
                 <div className={classes.label}>Country</div>
                 <TextField
                   name="senderCountry"
-                  value={invoicesData.senderAddress.country}
+                  value={invoiceData.senderAddress.country}
                   variant="outlined"
                   size="small"
                   onChange={(e) =>
-                    setInvociesData({
-                      ...invoicesData,
+                    setInvocieData({
+                      ...invoiceData,
                       senderAddress: {
-                        ...invoicesData.senderAddress,
+                        ...invoiceData.senderAddress,
                         country: e.target.value,
                       },
                     })
@@ -214,24 +217,24 @@ const Form = () => {
             <div className={classes.label}>Client's Name</div>
             <TextField
               name="clientName"
-              value={invoicesData.clientName}
+              value={invoiceData.clientName}
               variant="outlined"
               size="small"
               fullWidth
               onChange={(e) =>
-                setInvociesData({ ...invoicesData, clientName: e.target.value })
+                setInvocieData({ ...invoiceData, clientName: e.target.value })
               }
             />
             <div className={classes.label}>Client's Email</div>
             <TextField
               name="clientEmail"
-              value={invoicesData.clientEmail}
+              value={invoiceData.clientEmail}
               variant="outlined"
               size="small"
               fullWidth
               onChange={(e) =>
-                setInvociesData({
-                  ...invoicesData,
+                setInvocieData({
+                  ...invoiceData,
                   clientEmail: e.target.value,
                 })
               }
@@ -239,15 +242,15 @@ const Form = () => {
             <div className={classes.label}>Street Address</div>
             <TextField
               name="clientStreet"
-              value={invoicesData.clientAddress.street}
+              value={invoiceData.clientAddress.street}
               variant="outlined"
               size="small"
               fullWidth
               onChange={(e) =>
-                setInvociesData({
-                  ...invoicesData,
+                setInvocieData({
+                  ...invoiceData,
                   clientAddress: {
-                    ...invoicesData.clientAddress,
+                    ...invoiceData.clientAddress,
                     street: e.target.value,
                   },
                 })
@@ -258,14 +261,14 @@ const Form = () => {
                 <div className={classes.label}>City</div>
                 <TextField
                   name="clientCity"
-                  value={invoicesData.clientAddress.city}
+                  value={invoiceData.clientAddress.city}
                   variant="outlined"
                   size="small"
                   onChange={(e) =>
-                    setInvociesData({
-                      ...invoicesData,
+                    setInvocieData({
+                      ...invoiceData,
                       clientAddress: {
-                        ...invoicesData.clientAddress,
+                        ...invoiceData.clientAddress,
                         city: e.target.value,
                       },
                     })
@@ -276,14 +279,14 @@ const Form = () => {
                 <div className={classes.label}>Post Code</div>
                 <TextField
                   name="clientPostCode"
-                  value={invoicesData.clientAddress.postCode}
+                  value={invoiceData.clientAddress.postCode}
                   variant="outlined"
                   size="small"
                   onChange={(e) =>
-                    setInvociesData({
-                      ...invoicesData,
+                    setInvocieData({
+                      ...invoiceData,
                       clientAddress: {
-                        ...invoicesData.clientAddress,
+                        ...invoiceData.clientAddress,
                         postCode: e.target.value,
                       },
                     })
@@ -294,14 +297,14 @@ const Form = () => {
                 <div className={classes.label}>Country</div>
                 <TextField
                   name="clientCountry"
-                  vlaue={invoicesData.clientAddress.country}
+                  vlaue={invoiceData.clientAddress.country}
                   variant="outlined"
                   size="small"
                   onChange={(e) =>
-                    setInvociesData({
-                      ...invoicesData,
+                    setInvocieData({
+                      ...invoiceData,
                       clientAddress: {
-                        ...invoicesData.clientAddress,
+                        ...invoiceData.clientAddress,
                         country: e.target.value,
                       },
                     })
@@ -315,16 +318,16 @@ const Form = () => {
                 <TextField
                   name="createdAt"
                   type="date"
-                  value={invoicesData.createdAt}
+                  value={invoiceData.createdAt}
                   variant="outlined"
                   size="small"
                   fullWidth
                   onChange={(e) => {
-                    setInvociesData({
-                      ...invoicesData,
+                    setInvocieData({
+                      ...invoiceData,
                       createdAt: e.target.value,
-                      paymentDue: invoicesData.paymentTerms
-                        ? getDueDate(e.target.value, invoicesData.paymentTerms)
+                      paymentDue: invoiceData.paymentTerms
+                        ? getDueDate(e.target.value, invoiceData.paymentTerms)
                         : '',
                     });
                   }}
@@ -334,13 +337,13 @@ const Form = () => {
                 <div className={classes.label}>Payment terms</div>
 
                 <Select
-                  value={invoicesData.paymentTerms}
+                  value={invoiceData.paymentTerms}
                   onChange={(e) => {
-                    setInvociesData({
-                      ...invoicesData,
+                    setInvocieData({
+                      ...invoiceData,
                       paymentTerms: e.target.value,
-                      paymentDue: invoicesData.createdAt
-                        ? getDueDate(invoicesData.createdAt, e.target.value)
+                      paymentDue: invoiceData.createdAt
+                        ? getDueDate(invoiceData.createdAt, e.target.value)
                         : '',
                     });
                   }}
@@ -359,20 +362,20 @@ const Form = () => {
             <div className={classes.label}>Project Description</div>
             <TextField
               name="description"
-              value={invoicesData.description}
+              value={invoiceData.description}
               variant="outlined"
               size="small"
               fullWidth
               onChange={(e) =>
-                setInvociesData({
-                  ...invoicesData,
+                setInvocieData({
+                  ...invoiceData,
                   description: e.target.value,
                 })
               }
             />
-            {invoicesData.items.length > 0 ? (
+            {invoiceData.items.length > 0 ? (
               <ItemsList
-                items={invoicesData.items}
+                items={invoiceData.items}
                 handleChangeItem={handleChangeItemValue}
               />
             ) : null}

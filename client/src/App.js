@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Invoices from './components/Invoices/Invoices';
 import InvoiceDetailes from './components/InvoiceDetailes/InvoiceDetailes';
 import Form from './components/Form/Form';
@@ -18,6 +18,8 @@ const App = () => {
   const isDarkMode = useSelector((state) => state.GlobalState.isDarkMode);
   const invoices = useSelector((state) => state.GlobalState.invoices);
 
+  const [currentId, setCurrentId] = useState(null);
+
   useEffect(() => {
     dispatch(getInvoices());
   }, [invoices, dispatch]);
@@ -33,10 +35,10 @@ const App = () => {
                 <Invoices />
               </Route>
               <Route path="/invoices/:id" exact>
-                <InvoiceDetailes />
+                <InvoiceDetailes setCurrentId={setCurrentId} />
               </Route>
             </Switch>
-            <Form />
+            <Form currentId={currentId} />
           </Container>
         </Box>
       </Router>

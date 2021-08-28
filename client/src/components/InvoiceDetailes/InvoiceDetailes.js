@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import useStyles from './styles';
 
-const InvoiceDetailes = () => {
+const InvoiceDetailes = ({ setCurrentId }) => {
   const classes = useStyles();
   const invoice = useSelector((state) => state.GlobalState.invoice);
   const history = useHistory();
@@ -23,7 +23,7 @@ const InvoiceDetailes = () => {
           <Button onClick={onGoBack}>
             <ArrowBackIosIcon fontSize="small" /> Go Back
           </Button>
-          <DetailesHeader invoice={invoice} />
+          <DetailesHeader invoice={invoice} setCurrentId={setCurrentId} />
           <DetailesBody invoice={invoice} />
         </div>
       ) : null}

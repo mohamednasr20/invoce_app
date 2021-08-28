@@ -5,7 +5,7 @@ const initalState = {
   invoice: {},
   isDarkMode: false,
   showForm: false,
-  // currentId: null,
+  currentId: null,
 };
 
 // eslint-disable-next-line
@@ -17,6 +17,13 @@ export default (state = initalState, action) => {
       return { ...state, inovices: [...state.invoices, action.payload] };
     case 'FETCH_INVOICE':
       return { ...state, invoice: action.payload };
+    case 'UPDATE_INVOICE':
+      return {
+        ...state,
+        invoices: state.invoices.map((invoice) =>
+          invoice._id === action.payload._id ? action.payload : invoice
+        ),
+      };
     case 'DELETE_INVOICE':
       return {
         state,
@@ -28,8 +35,8 @@ export default (state = initalState, action) => {
       return { ...state, isDarkMode: !state.isDarkMode };
     case 'TOGGLE_FORM':
       return { ...state, showForm: !state.showForm };
-    // case 'CURRENT_ID':
-    //   return { ...state, currentId: action.payload };
+    case 'CURRENT_ID':
+      return { ...state, currentId: action.payload };
     default:
       return state;
   }

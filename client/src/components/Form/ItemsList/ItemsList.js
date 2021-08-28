@@ -9,7 +9,11 @@ const ItemsList = ({ items, handleChangeItem }) => {
   const showItems =
     items.length > 0
       ? items.map((item) => (
-          <Item key={item.id} item={item} handleChangeItem={handleChangeItem} />
+          <Item
+            key={item._id}
+            item={item}
+            handleChangeItem={handleChangeItem}
+          />
         ))
       : '';
 

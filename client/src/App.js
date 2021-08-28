@@ -18,7 +18,7 @@ const App = () => {
   const isDarkMode = useSelector((state) => state.GlobalState.isDarkMode);
   const invoices = useSelector((state) => state.GlobalState.invoices);
 
-  const [currentId, setCurrentId] = useState(null);
+  // const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
     dispatch(getInvoices());
@@ -35,10 +35,10 @@ const App = () => {
                 <Invoices />
               </Route>
               <Route path="/invoices/:id" exact>
-                <InvoiceDetailes setCurrentId={setCurrentId} />
+                <InvoiceDetailes />
               </Route>
             </Switch>
-            <Form currentId={currentId} />
+            <Form />
           </Container>
         </Box>
       </Router>

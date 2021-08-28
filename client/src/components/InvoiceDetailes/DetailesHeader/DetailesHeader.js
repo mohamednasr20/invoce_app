@@ -3,11 +3,11 @@ import Button from '@material-ui/core/Button';
 import useStyles from './styles';
 import Paper from '@material-ui/core/Paper';
 import { deleteInvoice } from '../../../actions/invoices';
-import { toggleFormShow } from '../../../actions/themeMode';
+import { toggleFormShow, handleCurrentId } from '../../../actions/themeMode';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-const DetailesHeader = ({ setCurrentId }) => {
+const DetailesHeader = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const invoice = useSelector((state) => state.GlobalState.invoice);
@@ -20,8 +20,7 @@ const DetailesHeader = ({ setCurrentId }) => {
 
   const onUpdateInvoice = (id) => {
     dispatch(toggleFormShow());
-    // dispatch(handleCurrentId(id));
-    setCurrentId(id);
+    dispatch(handleCurrentId(id));
   };
 
   return (

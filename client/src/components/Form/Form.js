@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ItemsList from './ItemsList/ItemsList';
-import { createInvoice } from '../../actions/invoices';
+import { createInvoice, updateInvoice } from '../../actions/invoices';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleFormShow } from '../../actions/themeMode';
+import { toggleFormShow, handleCurrentId } from '../../actions/themeMode';
 import {
   Container,
   Typography,
@@ -16,11 +16,11 @@ import { v4 as uuidv4 } from 'uuid';
 import AddIcon from '@material-ui/icons/Add';
 import useStyles from './styles';
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const showForm = useSelector((state) => state.GlobalState.showForm);
-  // const currentId = useSelector((state) => state.GlobalState.currentId);
+  const currentId = useSelector((state) => state.GlobalState.currentId);
   const invoice = useSelector((state) =>
     currentId
       ? state.GlobalState.invoices.find((invoice) => invoice._id === currentId)
@@ -50,6 +50,13 @@ const Form = ({ currentId, setCurrentId }) => {
     items: [],
     total: 0,
   });
+
+  useEffect(() => {
+    if (invoice) {
+      setInvocieData(invoice);
+    }
+    // eslint-disable-next-line
+  }, [currentId]);
 
   const addItemField = () => {
     setInvocieData({
@@ -98,7 +105,13 @@ const Form = ({ currentId, setCurrentId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch(createInvoice(invoiceData));
+    if (currentId) {
+      dispatch(updateInvoice(currentId, invoiceData));
+      dispatch(handleCurrentId(null));
+    } else {
+      dispatch(createInvoice(invoiceData));
+    }
+
     dispatch(toggleFormShow());
   };
 
@@ -110,10 +123,6 @@ const Form = ({ currentId, setCurrentId }) => {
 
     return dueDate;
   };
-
-  useEffect(() => {
-    if (invoice) setInvocieData(invoice);
-  }, [invoice]);
 
   return (
     <div

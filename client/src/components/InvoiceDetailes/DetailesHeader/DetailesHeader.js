@@ -2,21 +2,16 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import useStyles from './styles';
 import Paper from '@material-ui/core/Paper';
-import { deleteInvoice, updateInvoiceStatus } from '../../../actions/invoices';
+import { updateInvoiceStatus } from '../../../actions/invoices';
 import { toggleFormShow, handleCurrentId } from '../../../actions/themeMode';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-const DetailesHeader = () => {
+const DetailesHeader = ({ openDeleteModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const invoice = useSelector((state) => state.GlobalState.invoice);
   const classes = useStyles({ invoice });
-
-  const onDeleteInvoice = (id) => {
-    history.push('/');
-    dispatch(deleteInvoice(id));
-  };
 
   const onUpdateInvoice = (id) => {
     dispatch(toggleFormShow());
@@ -43,7 +38,7 @@ const DetailesHeader = () => {
           className={classes.btn}
           variant="contained"
           color="secondary"
-          onClick={() => onDeleteInvoice(invoice._id)}
+          onClick={() => openDeleteModal()}
         >
           Delete
         </Button>

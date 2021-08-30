@@ -14,7 +14,7 @@ import {
   Paper,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-
+import { v4 as uuidv4 } from 'uuid';
 import useStyles from './styles';
 
 const Form = () => {
@@ -92,7 +92,9 @@ const Form = () => {
     const newItems = invoiceData.items.map((item, idx) =>
       idx === invoiceData.items.indexOf(i)
         ? inputName === 'name'
-          ? { ...item, name: value }
+          ? invoiceData.items.find((item) => item.name === value)
+            ? { ...item, name: `${value}${uuidv4().slice(8, 10)}` }
+            : { ...item, name: value }
           : {
               ...item,
               [inputName]: Number(value),

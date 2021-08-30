@@ -3,7 +3,7 @@ import Item from './Item/Item';
 import { Typography, Grid } from '@material-ui/core';
 import useStyles from './styles';
 
-const ItemsList = ({ items, handleChangeItem }) => {
+const ItemsList = ({ items, handleChangeItem, deleteItem }) => {
   const classes = useStyles();
 
   const showItems =
@@ -13,6 +13,7 @@ const ItemsList = ({ items, handleChangeItem }) => {
             key={item.name}
             item={item}
             handleChangeItem={handleChangeItem}
+            deleteItem={deleteItem}
           />
         ))
       : '';

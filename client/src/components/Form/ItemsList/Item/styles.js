@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
   },
   iconGrid: {
     margin: 'auto',
+    cursor: 'pointer',
   },
 }));
 

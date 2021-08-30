@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import ItemsList from './ItemsList/ItemsList';
 import { createInvoice, updateInvoice } from '../../actions/invoices';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { toggleFormShow, handleCurrentId } from '../../actions/themeMode';
 import {
   Container,
@@ -124,6 +124,7 @@ const Form = () => {
     if (currentId) {
       dispatch(updateInvoice(currentId, invoiceData));
       dispatch(handleCurrentId(null));
+      history.push('/');
     } else {
       dispatch(createInvoice(invoiceData));
     }

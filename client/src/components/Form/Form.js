@@ -55,20 +55,29 @@ const Form = () => {
   };
 
   const [invoiceData, setInvocieData] = useState(data);
+  const [itemError, setItemError] = useState(false);
 
   const addItemField = () => {
-    setInvocieData({
-      ...invoiceData,
-      items: [
-        ...invoiceData.items,
-        {
-          name: '',
-          quantity: 0,
-          price: 0,
-          total: 0,
-        },
-      ],
-    });
+    const emptyInput = invoiceData.items.find((item) => !item.name);
+    if (emptyInput) {
+      setItemError(true);
+      setTimeout(() => {
+        setItemError(false);
+      }, 1500);
+    } else {
+      setInvocieData({
+        ...invoiceData,
+        items: [
+          ...invoiceData.items,
+          {
+            name: '',
+            quantity: 0,
+            price: 0,
+            total: 0,
+          },
+        ],
+      });
+    }
   };
 
   const onDeleteItem = (id) => {
@@ -411,6 +420,7 @@ const Form = () => {
                 items={invoiceData.items}
                 handleChangeItem={handleChangeItemValue}
                 deleteItem={onDeleteItem}
+                itemError={itemError}
               />
             ) : null}
             <Button

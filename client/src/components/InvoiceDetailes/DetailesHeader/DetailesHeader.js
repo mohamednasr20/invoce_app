@@ -5,18 +5,15 @@ import Paper from '@material-ui/core/Paper';
 import { updateInvoiceStatus } from '../../../actions/invoices';
 import { toggleFormShow, handleCurrentId } from '../../../actions/themeMode';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 const DetailesHeader = ({ openDeleteModal }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const invoice = useSelector((state) => state.GlobalState.invoice);
   const classes = useStyles({ invoice });
 
   const onUpdateInvoice = (id) => {
     dispatch(toggleFormShow());
     dispatch(handleCurrentId(id));
-    history.push('/');
   };
 
   return (

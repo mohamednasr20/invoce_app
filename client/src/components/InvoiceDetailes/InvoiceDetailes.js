@@ -6,6 +6,7 @@ import DeleteModal from './DeleteModal/DeleteModal';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
+import { handleCurrentId } from '../../actions/themeMode';
 import useStyles from './styles';
 
 const InvoiceDetailes = ({ setCurrentId }) => {
@@ -24,6 +25,7 @@ const InvoiceDetailes = ({ setCurrentId }) => {
 
   const onGoBack = () => {
     history.push('/');
+    handleCurrentId(null);
   };
 
   return (

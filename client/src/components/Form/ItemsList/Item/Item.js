@@ -3,7 +3,7 @@ import { TextField, Grid } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import useStyles from './styles';
 
-const Item = ({ item, handleChangeItem }) => {
+const Item = ({ item, handleChangeItem, deleteItem }) => {
   const classes = useStyles();
 
   return (
@@ -49,7 +49,10 @@ const Item = ({ item, handleChangeItem }) => {
         />
       </Grid>
       <Grid item xs={1} className={classes.iconGrid}>
-        <DeleteIcon className={classes.icon} />
+        <DeleteIcon
+          className={classes.icon}
+          onClick={() => console.log(item._id)}
+        />
       </Grid>
     </Grid>
   );

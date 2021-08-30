@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ItemsList from './ItemsList/ItemsList';
 import { createInvoice, updateInvoice } from '../../actions/invoices';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { toggleFormShow, handleCurrentId } from '../../actions/themeMode';
 import {
   Container,
@@ -13,10 +14,12 @@ import {
   Paper,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+
 import useStyles from './styles';
 
 const Form = () => {
   const classes = useStyles();
+  const history = useHistory();
   const dispatch = useDispatch();
   const showForm = useSelector((state) => state.GlobalState.showForm);
   const currentId = useSelector((state) => state.GlobalState.currentId);
@@ -25,6 +28,7 @@ const Form = () => {
       ? state.GlobalState.invoices.find((invoice) => invoice._id === currentId)
       : null
   );
+  const ref = useRef();
 
   const data = {
     createdAt: '',
@@ -65,6 +69,11 @@ const Form = () => {
         },
       ],
     });
+  };
+
+  const onDeleteItem = (id) => {
+    const newItems = invoiceData.items.filter((item) => item._id !== id);
+    setInvocieData({ ...invoiceData, items: newItems });
   };
 
   const handleChangeItemValue = (e, i) => {
@@ -123,18 +132,27 @@ const Form = () => {
     clear();
   };
 
-  useEffect(() => {
-    if (invoice) {
-      setInvocieData(invoice);
+  const onClickOutSideForm = (e) => {
+    if (!ref.current || !ref.current.contains(e.target)) {
+      dispatch(toggleFormShow());
+      clear();
     }
+  };
+
+  useEffect(() => {
+    if (invoice) setInvocieData(invoice);
+
+    if (!currentId) clear();
+
     // eslint-disable-next-line
   }, [currentId]);
   return (
     <div
       style={{ display: showForm ? 'block' : 'none' }}
       className={classes.root}
+      onClick={(e) => onClickOutSideForm(e)}
     >
-      <Container className={classes.formContainer}>
+      <Container className={classes.formContainer} ref={ref}>
         <Paper className={classes.paper}>
           <Typography variant="h4">
             {currentId ? `Edit #${currentId.slice(18)}` : 'New Invoice'}
@@ -391,6 +409,7 @@ const Form = () => {
               <ItemsList
                 items={invoiceData.items}
                 handleChangeItem={handleChangeItemValue}
+                deleteItem={onDeleteItem}
               />
             ) : null}
             <Button

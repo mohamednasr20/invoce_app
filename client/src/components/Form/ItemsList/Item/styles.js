@@ -4,6 +4,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 20,
   },
+
   iconGrid: {
     margin: 'auto',
     cursor: 'pointer',

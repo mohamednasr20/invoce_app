@@ -12,6 +12,7 @@ import {
   MenuItem,
   Button,
   Paper,
+  Modal,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { v4 as uuidv4 } from 'uuid';
@@ -92,9 +93,7 @@ const Form = () => {
     const newItems = invoiceData.items.map((item, idx) =>
       idx === invoiceData.items.indexOf(i)
         ? inputName === 'name'
-          ? invoiceData.items.find((item) => item.name === value)
-            ? { ...item, name: `${value}${uuidv4().slice(8, 10)}` }
-            : { ...item, name: value }
+          ? { ...item, name: value }
           : {
               ...item,
               [inputName]: Number(value),
@@ -144,13 +143,6 @@ const Form = () => {
     clear();
   };
 
-  const onClickOutSideForm = (e) => {
-    if (!ref.current || !ref.current.contains(e.target)) {
-      dispatch(toggleFormShow());
-      clear();
-    }
-  };
-
   useEffect(() => {
     if (invoice) setInvocieData(invoice);
 
@@ -162,7 +154,6 @@ const Form = () => {
     <div
       style={{ display: showForm ? 'block' : 'none' }}
       className={classes.root}
-      onClick={(e) => onClickOutSideForm(e)}
     >
       <Container className={classes.formContainer} ref={ref}>
         <Paper className={classes.paper}>
@@ -171,260 +162,264 @@ const Form = () => {
           </Typography>
 
           <form onSubmit={handleSubmit}>
-            <Typography
-              variant="h5"
-              className={classes.heading}
-              color="primary"
-            >
-              Bill From
-            </Typography>
-            <div className={classes.label}>Street Address</div>
-            <TextField
-              name="senderStreet"
-              value={invoiceData.senderAddress.street}
-              variant="outlined"
-              size="small"
-              onChange={(e) =>
-                setInvocieData({
-                  ...invoiceData,
-                  senderAddress: {
-                    ...invoiceData.senderAddress,
-                    street: e.target.value,
-                  },
-                })
-              }
-              fullWidth
-            />
-            <div className={classes.flex}>
-              <div className={classes.space}>
-                <div className={classes.label}>City</div>
-                <TextField
-                  name="senderCity"
-                  value={invoiceData.senderAddress.city}
-                  variant="outlined"
-                  size="small"
-                  onChange={(e) =>
-                    setInvocieData({
-                      ...invoiceData,
-                      senderAddress: {
-                        ...invoiceData.senderAddress,
-                        city: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-              <div className={classes.space}>
-                <div className={classes.label}>Post Code</div>
-                <TextField
-                  name="senderPostCode"
-                  vlaue={invoiceData.senderAddress.postCode}
-                  variant="outlined"
-                  size="small"
-                  onChange={(e) =>
-                    setInvocieData({
-                      ...invoiceData,
-                      senderAddress: {
-                        ...invoiceData.senderAddress,
-                        postCode: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-              <div className={classes.space}>
-                <div className={classes.label}>Country</div>
-                <TextField
-                  name="senderCountry"
-                  value={invoiceData.senderAddress.country}
-                  variant="outlined"
-                  size="small"
-                  onChange={(e) =>
-                    setInvocieData({
-                      ...invoiceData,
-                      senderAddress: {
-                        ...invoiceData.senderAddress,
-                        country: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-            </div>
-            <Typography
-              variant="h5"
-              className={classes.heading}
-              color="primary"
-            >
-              Bill to
-            </Typography>
-            <div className={classes.label}>Client's Name</div>
-            <TextField
-              name="clientName"
-              value={invoiceData.clientName}
-              variant="outlined"
-              size="small"
-              fullWidth
-              onChange={(e) =>
-                setInvocieData({ ...invoiceData, clientName: e.target.value })
-              }
-            />
-            <div className={classes.label}>Client's Email</div>
-            <TextField
-              name="clientEmail"
-              value={invoiceData.clientEmail}
-              variant="outlined"
-              size="small"
-              fullWidth
-              onChange={(e) =>
-                setInvocieData({
-                  ...invoiceData,
-                  clientEmail: e.target.value,
-                })
-              }
-            />
-            <div className={classes.label}>Street Address</div>
-            <TextField
-              name="clientStreet"
-              value={invoiceData.clientAddress.street}
-              variant="outlined"
-              size="small"
-              fullWidth
-              onChange={(e) =>
-                setInvocieData({
-                  ...invoiceData,
-                  clientAddress: {
-                    ...invoiceData.clientAddress,
-                    street: e.target.value,
-                  },
-                })
-              }
-            />
-            <div className={classes.flex}>
-              <div className={classes.space}>
-                <div className={classes.label}>City</div>
-                <TextField
-                  name="clientCity"
-                  value={invoiceData.clientAddress.city}
-                  variant="outlined"
-                  size="small"
-                  onChange={(e) =>
-                    setInvocieData({
-                      ...invoiceData,
-                      clientAddress: {
-                        ...invoiceData.clientAddress,
-                        city: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-              <div className={classes.space}>
-                <div className={classes.label}>Post Code</div>
-                <TextField
-                  name="clientPostCode"
-                  value={invoiceData.clientAddress.postCode}
-                  variant="outlined"
-                  size="small"
-                  onChange={(e) =>
-                    setInvocieData({
-                      ...invoiceData,
-                      clientAddress: {
-                        ...invoiceData.clientAddress,
-                        postCode: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-              <div className={classes.space}>
-                <div className={classes.label}>Country</div>
-                <TextField
-                  name="clientCountry"
-                  vlaue={invoiceData.clientAddress.country}
-                  variant="outlined"
-                  size="small"
-                  onChange={(e) =>
-                    setInvocieData({
-                      ...invoiceData,
-                      clientAddress: {
-                        ...invoiceData.clientAddress,
-                        country: e.target.value,
-                      },
-                    })
-                  }
-                />
-              </div>
-            </div>
-            <div className={classes.flex}>
-              <div>
-                <div className={classes.label}>Invoice Date</div>
-                <TextField
-                  name="createdAt"
-                  type="date"
-                  value={invoiceData.createdAt}
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  onChange={(e) => {
-                    setInvocieData({
-                      ...invoiceData,
-                      createdAt: e.target.value,
-                      paymentDue: invoiceData.paymentTerms
-                        ? getDueDate(e.target.value, invoiceData.paymentTerms)
-                        : '',
-                    });
-                  }}
-                />
-              </div>
-              <div>
-                <div className={classes.label}>Payment terms</div>
-
-                <Select
-                  value={invoiceData.paymentTerms}
-                  onChange={(e) => {
-                    setInvocieData({
-                      ...invoiceData,
-                      paymentTerms: e.target.value,
-                      paymentDue: invoiceData.createdAt
-                        ? getDueDate(invoiceData.createdAt, e.target.value)
-                        : '',
-                    });
-                  }}
-                  autoWidth
-                >
-                  <MenuItem value={''}>
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={30}>Next 30 days</MenuItem>
-                  <MenuItem value={14}>Next 14 days</MenuItem>
-                  <MenuItem value={7}>Next 7 day</MenuItem>
-                  <MenuItem value={1}>Next 1 day</MenuItem>
-                </Select>
-              </div>
-            </div>
-            <div className={classes.label}>Project Description</div>
-            <TextField
-              name="description"
-              value={invoiceData.description}
-              variant="outlined"
-              size="small"
-              fullWidth
-              onChange={(e) =>
-                setInvocieData({
-                  ...invoiceData,
-                  description: e.target.value,
-                })
-              }
-            />
-            {invoiceData.items.length > 0 ? (
-              <ItemsList
-                items={invoiceData.items}
-                handleChangeItem={handleChangeItemValue}
-                deleteItem={onDeleteItem}
-                itemError={itemError}
+            <div>
+              <Typography
+                variant="h5"
+                className={classes.heading}
+                color="primary"
+              >
+                Bill From
+              </Typography>
+              <div className={classes.label}>Street Address</div>
+              <TextField
+                name="senderStreet"
+                value={invoiceData.senderAddress.street}
+                variant="outlined"
+                size="small"
+                onChange={(e) =>
+                  setInvocieData({
+                    ...invoiceData,
+                    senderAddress: {
+                      ...invoiceData.senderAddress,
+                      street: e.target.value,
+                    },
+                  })
+                }
+                fullWidth
               />
-            ) : null}
+              <div className={classes.flex}>
+                <div className={classes.space}>
+                  <div className={classes.label}>City</div>
+                  <TextField
+                    name="senderCity"
+                    value={invoiceData.senderAddress.city}
+                    variant="outlined"
+                    size="small"
+                    onChange={(e) =>
+                      setInvocieData({
+                        ...invoiceData,
+                        senderAddress: {
+                          ...invoiceData.senderAddress,
+                          city: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                </div>
+                <div className={classes.space}>
+                  <div className={classes.label}>Post Code</div>
+                  <TextField
+                    name="senderPostCode"
+                    vlaue={invoiceData.senderAddress.postCode}
+                    variant="outlined"
+                    size="small"
+                    onChange={(e) =>
+                      setInvocieData({
+                        ...invoiceData,
+                        senderAddress: {
+                          ...invoiceData.senderAddress,
+                          postCode: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                </div>
+                <div className={classes.space}>
+                  <div className={classes.label}>Country</div>
+                  <TextField
+                    name="senderCountry"
+                    value={invoiceData.senderAddress.country}
+                    variant="outlined"
+                    size="small"
+                    onChange={(e) =>
+                      setInvocieData({
+                        ...invoiceData,
+                        senderAddress: {
+                          ...invoiceData.senderAddress,
+                          country: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                </div>
+              </div>
+              <Typography
+                variant="h5"
+                className={classes.heading}
+                color="primary"
+              >
+                Bill to
+              </Typography>
+              <div className={classes.label}>Client's Name</div>
+              <TextField
+                name="clientName"
+                value={invoiceData.clientName}
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) =>
+                  setInvocieData({ ...invoiceData, clientName: e.target.value })
+                }
+              />
+              <div className={classes.label}>Client's Email</div>
+              <TextField
+                name="clientEmail"
+                value={invoiceData.clientEmail}
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) =>
+                  setInvocieData({
+                    ...invoiceData,
+                    clientEmail: e.target.value,
+                  })
+                }
+              />
+              <div className={classes.label}>Street Address</div>
+              <TextField
+                name="clientStreet"
+                value={invoiceData.clientAddress.street}
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) =>
+                  setInvocieData({
+                    ...invoiceData,
+                    clientAddress: {
+                      ...invoiceData.clientAddress,
+                      street: e.target.value,
+                    },
+                  })
+                }
+              />
+              <div className={classes.flex}>
+                <div className={classes.space}>
+                  <div className={classes.label}>City</div>
+                  <TextField
+                    name="clientCity"
+                    value={invoiceData.clientAddress.city}
+                    variant="outlined"
+                    size="small"
+                    onChange={(e) =>
+                      setInvocieData({
+                        ...invoiceData,
+                        clientAddress: {
+                          ...invoiceData.clientAddress,
+                          city: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                </div>
+                <div className={classes.space}>
+                  <div className={classes.label}>Post Code</div>
+                  <TextField
+                    name="clientPostCode"
+                    value={invoiceData.clientAddress.postCode}
+                    variant="outlined"
+                    size="small"
+                    onChange={(e) =>
+                      setInvocieData({
+                        ...invoiceData,
+                        clientAddress: {
+                          ...invoiceData.clientAddress,
+                          postCode: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                </div>
+                <div className={classes.space}>
+                  <div className={classes.label}>Country</div>
+                  <TextField
+                    name="clientCountry"
+                    vlaue={invoiceData.clientAddress.country}
+                    variant="outlined"
+                    size="small"
+                    onChange={(e) =>
+                      setInvocieData({
+                        ...invoiceData,
+                        clientAddress: {
+                          ...invoiceData.clientAddress,
+                          country: e.target.value,
+                        },
+                      })
+                    }
+                  />
+                </div>
+              </div>
+              <div className={classes.flex}>
+                <div>
+                  <div className={classes.label}>Invoice Date</div>
+                  <TextField
+                    name="createdAt"
+                    type="date"
+                    value={invoiceData.createdAt}
+                    variant="outlined"
+                    size="small"
+                    fullWidth
+                    onChange={(e) => {
+                      setInvocieData({
+                        ...invoiceData,
+                        createdAt: e.target.value,
+                        paymentDue: invoiceData.paymentTerms
+                          ? getDueDate(e.target.value, invoiceData.paymentTerms)
+                          : '',
+                      });
+                    }}
+                  />
+                </div>
+                <div>
+                  <div className={classes.label}>Payment terms</div>
+                  <div>
+                    <Select
+                      value={invoiceData.paymentTerms}
+                      onChange={(e) => {
+                        setInvocieData({
+                          ...invoiceData,
+                          paymentTerms: e.target.value,
+                          paymentDue: invoiceData.createdAt
+                            ? getDueDate(invoiceData.createdAt, e.target.value)
+                            : '',
+                        });
+                      }}
+                      autoWidth
+                    >
+                      <MenuItem value={''}>
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value={30}>Next 30 days</MenuItem>
+                      <MenuItem value={14}>Next 14 days</MenuItem>
+                      <MenuItem value={7}>Next 7 day</MenuItem>
+                      <MenuItem value={1}>Next 1 day</MenuItem>
+                    </Select>
+                  </div>
+                </div>
+              </div>
+              <div className={classes.label}>Project Description</div>
+              <TextField
+                name="description"
+                value={invoiceData.description}
+                variant="outlined"
+                size="small"
+                fullWidth
+                onChange={(e) =>
+                  setInvocieData({
+                    ...invoiceData,
+                    description: e.target.value,
+                  })
+                }
+              />
+              {invoiceData.items.length > 0 ? (
+                <ItemsList
+                  items={invoiceData.items}
+                  handleChangeItem={handleChangeItemValue}
+                  deleteItem={onDeleteItem}
+                  itemError={itemError}
+                />
+              ) : null}
+            </div>
+
             <Button
               variant="contained"
               fullWidth

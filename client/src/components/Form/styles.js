@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: 0,
     width: '100%',
-    background: 'rgba(0, 0 , 0 , 0.7)',
+    background: 'rgba(0, 0 , 0 , 0.4)',
   },
   formContainer: {
     width: '504px',

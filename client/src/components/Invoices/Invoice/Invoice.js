@@ -17,7 +17,7 @@ const Invoice = ({ invoice }) => {
     <Paper className={classes.root}>
       <Grid container spacing={1}>
         <Grid item xs={2} className={classes.boldFont}>
-          {`#${invoiceId}`}
+          {`# ${invoiceId}`}
         </Grid>
         <Grid item xs={3} className={classes.lightFont}>
           {`Due ${invoice.paymentDue}`}

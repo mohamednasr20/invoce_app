@@ -12,10 +12,8 @@ import {
   MenuItem,
   Button,
   Paper,
-  Modal,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import { v4 as uuidv4 } from 'uuid';
 import useStyles from './styles';
 
 const Form = () => {

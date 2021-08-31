@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 20,
-    padding: '20px 5px',
+    padding: '25px 10px',
     borderRadius: 8,
-    minWidth: 672,
+    minWidth: 680,
   },
   boldFont: {
     fontWeight: 700,
@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
       invoice.status === 'pending'
         ? 'rgb(255, 143, 0, 0.1)'
         : 'rgb(51, 214, 159, 0.1)',
-    marginLeft: 30,
     borderRadius: '6px',
     textAlign: 'center',
   },

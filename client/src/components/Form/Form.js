@@ -432,10 +432,14 @@ const Form = () => {
                 variant="contained"
                 onClick={() => dispatch(toggleFormShow())}
               >
-                Discard
+                {currentId ? 'Cancel' : 'Discard'}
               </Button>
               <div className={classes.btnRight}>
-                <Button className={classes.btn} variant="outlined">
+                <Button
+                  style={{ display: currentId ? 'none' : 'block ' }}
+                  className={classes.btn}
+                  variant="outlined"
+                >
                   Save As Draft
                 </Button>
                 <Button
@@ -444,7 +448,7 @@ const Form = () => {
                   color="primary"
                   type="submit"
                 >
-                  Save & Add
+                  {currentId ? 'Save Changes' : 'Save & Add'}
                 </Button>
               </div>
             </div>

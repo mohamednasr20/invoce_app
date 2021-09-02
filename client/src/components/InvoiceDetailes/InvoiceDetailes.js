@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DetailesHeader from './DetailesHeader/DetailesHeader';
 import DetailesBody from './DetailesBody/DetailesBody';
 import DeleteModal from './DeleteModal/DeleteModal';
@@ -13,6 +13,7 @@ const InvoiceDetailes = ({ setCurrentId }) => {
   const classes = useStyles();
   const invoice = useSelector((state) => state.GlobalState.invoice);
   const history = useHistory();
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -24,8 +25,8 @@ const InvoiceDetailes = ({ setCurrentId }) => {
   };
 
   const onGoBack = () => {
+    dispatch(handleCurrentId(null));
     history.push('/');
-    handleCurrentId(null);
   };
 
   return (

@@ -436,7 +436,7 @@ const Form = () => {
               </Button>
               <div className={classes.btnRight}>
                 <Button
-                  style={{ display: currentId ? 'none' : 'block ' }}
+                  style={{ display: currentId ? 'none' : 'inline' }}
                   className={classes.btn}
                   variant="outlined"
                 >

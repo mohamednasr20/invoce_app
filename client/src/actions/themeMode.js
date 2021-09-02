@@ -7,5 +7,5 @@ export const toggleFormShow = () => (dispatch) => {
 };
 
 export const handleCurrentId = (id) => (dispatch) => {
-  dispatch({ type: 'CURRENT_ID', payload: id });
+  dispatch({ type: 'CURRENT_ID', payload: id !== null ? id : null });
 };

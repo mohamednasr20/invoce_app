@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import FormField from './FormField/FormField';
 import { useHistory } from 'react-router-dom';
 import ItemsList from './ItemsList/ItemsList';
 import { createInvoice, updateInvoice } from '../../actions/invoices';
@@ -27,7 +28,6 @@ const Form = () => {
       ? state.GlobalState.invoices.find((invoice) => invoice._id === currentId)
       : null
   );
-  const ref = useRef();
 
   const data = {
     createdAt: '',
@@ -153,7 +153,7 @@ const Form = () => {
       style={{ display: showForm ? 'block' : 'none' }}
       className={classes.root}
     >
-      <Container className={classes.formContainer} ref={ref}>
+      <Container className={classes.formContainer}>
         <Paper className={classes.paper}>
           <Typography variant="h4">
             {currentId ? `Edit #${currentId.slice(18)}` : 'New Invoice'}
@@ -169,11 +169,10 @@ const Form = () => {
                 Bill From
               </Typography>
               <div className={classes.label}>Street Address</div>
-              <TextField
+
+              <FormField
                 name="senderStreet"
-                value={invoiceData.senderAddress.street}
-                variant="outlined"
-                size="small"
+                vlaue={invoiceData.senderAddress.street}
                 onChange={(e) =>
                   setInvocieData({
                     ...invoiceData,
@@ -183,16 +182,15 @@ const Form = () => {
                     },
                   })
                 }
-                fullWidth
+                fullWidth={true}
               />
               <div className={classes.flex}>
                 <div className={classes.space}>
                   <div className={classes.label}>City</div>
-                  <TextField
-                    name="senderCity"
-                    value={invoiceData.senderAddress.city}
-                    variant="outlined"
-                    size="small"
+
+                  <FormField
+                    name="senderStreet"
+                    vlaue={invoiceData.senderAddress.city}
                     onChange={(e) =>
                       setInvocieData({
                         ...invoiceData,
@@ -206,11 +204,10 @@ const Form = () => {
                 </div>
                 <div className={classes.space}>
                   <div className={classes.label}>Post Code</div>
-                  <TextField
+
+                  <FormField
                     name="senderPostCode"
                     vlaue={invoiceData.senderAddress.postCode}
-                    variant="outlined"
-                    size="small"
                     onChange={(e) =>
                       setInvocieData({
                         ...invoiceData,
@@ -224,11 +221,10 @@ const Form = () => {
                 </div>
                 <div className={classes.space}>
                   <div className={classes.label}>Country</div>
-                  <TextField
+
+                  <FormField
                     name="senderCountry"
                     value={invoiceData.senderAddress.country}
-                    variant="outlined"
-                    size="small"
                     onChange={(e) =>
                       setInvocieData({
                         ...invoiceData,
@@ -249,12 +245,11 @@ const Form = () => {
                 Bill to
               </Typography>
               <div className={classes.label}>Client's Name</div>
-              <TextField
+
+              <FormField
                 name="clientName"
                 value={invoiceData.clientName}
-                variant="outlined"
-                size="small"
-                fullWidth
+                fullWidth={true}
                 onChange={(e) =>
                   setInvocieData({ ...invoiceData, clientName: e.target.value })
                 }
@@ -274,12 +269,11 @@ const Form = () => {
                 }
               />
               <div className={classes.label}>Street Address</div>
-              <TextField
+
+              <FormField
                 name="clientStreet"
                 value={invoiceData.clientAddress.street}
-                variant="outlined"
-                size="small"
-                fullWidth
+                fullWidth={true}
                 onChange={(e) =>
                   setInvocieData({
                     ...invoiceData,
@@ -293,11 +287,10 @@ const Form = () => {
               <div className={classes.flex}>
                 <div className={classes.space}>
                   <div className={classes.label}>City</div>
-                  <TextField
+
+                  <FormField
                     name="clientCity"
                     value={invoiceData.clientAddress.city}
-                    variant="outlined"
-                    size="small"
                     onChange={(e) =>
                       setInvocieData({
                         ...invoiceData,
@@ -311,11 +304,10 @@ const Form = () => {
                 </div>
                 <div className={classes.space}>
                   <div className={classes.label}>Post Code</div>
-                  <TextField
+
+                  <FormField
                     name="clientPostCode"
                     value={invoiceData.clientAddress.postCode}
-                    variant="outlined"
-                    size="small"
                     onChange={(e) =>
                       setInvocieData({
                         ...invoiceData,
@@ -329,11 +321,10 @@ const Form = () => {
                 </div>
                 <div className={classes.space}>
                   <div className={classes.label}>Country</div>
-                  <TextField
+
+                  <FormField
                     name="clientCountry"
                     vlaue={invoiceData.clientAddress.country}
-                    variant="outlined"
-                    size="small"
                     onChange={(e) =>
                       setInvocieData({
                         ...invoiceData,
@@ -349,13 +340,12 @@ const Form = () => {
               <div className={classes.flex}>
                 <div>
                   <div className={classes.label}>Invoice Date</div>
-                  <TextField
+
+                  <FormField
                     name="createdAt"
                     type="date"
                     value={invoiceData.createdAt}
-                    variant="outlined"
-                    size="small"
-                    fullWidth
+                    fullWidth={true}
                     onChange={(e) => {
                       setInvocieData({
                         ...invoiceData,
@@ -371,6 +361,7 @@ const Form = () => {
                   <div className={classes.label}>Payment terms</div>
                   <div>
                     <Select
+                      name="paymentTerms"
                       value={invoiceData.paymentTerms}
                       onChange={(e) => {
                         setInvocieData({
@@ -395,12 +386,11 @@ const Form = () => {
                 </div>
               </div>
               <div className={classes.label}>Project Description</div>
-              <TextField
+
+              <FormField
                 name="description"
                 value={invoiceData.description}
-                variant="outlined"
-                size="small"
-                fullWidth
+                fullWidth={true}
                 onChange={(e) =>
                   setInvocieData({
                     ...invoiceData,

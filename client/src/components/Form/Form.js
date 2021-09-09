@@ -8,11 +8,9 @@ import { toggleFormShow, handleCurrentId } from '../../actions/themeMode';
 import {
   Container,
   Typography,
-  Select,
   MenuItem,
   Button,
   Paper,
-  TextField,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import useStyles from './styles';
@@ -270,7 +268,7 @@ const Form = () => {
               <div className={classes.label}>Client's Email</div>
 
               <FormField
-                ame="clientEmail"
+                name="clientEmail"
                 value={invoiceData.clientEmail}
                 fullWidth={true}
                 onChange={(e) =>
@@ -279,6 +277,8 @@ const Form = () => {
                     clientEmail: e.target.value,
                   })
                 }
+                validators={['required', 'isEmail']}
+                errorMessages={['this field is required', 'email is invalid']}
               />
               <div className={classes.label}>Street Address</div>
 

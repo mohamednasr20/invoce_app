@@ -8,14 +8,18 @@ import { toggleFormShow, handleCurrentId } from '../../actions/themeMode';
 import {
   Container,
   Typography,
-  TextField,
   Select,
   MenuItem,
   Button,
   Paper,
+  TextField,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import useStyles from './styles';
+import {
+  ValidatorForm,
+  SelectValidator,
+} from 'react-material-ui-form-validator';
 
 const Form = () => {
   const classes = useStyles();
@@ -126,7 +130,7 @@ const Form = () => {
     return dueDate;
   };
 
-  const handleSubmit = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     if (currentId) {
@@ -159,7 +163,7 @@ const Form = () => {
             {currentId ? `Edit #${currentId.slice(18)}` : 'New Invoice'}
           </Typography>
 
-          <form onSubmit={handleSubmit}>
+          <ValidatorForm onSubmit={onSubmit}>
             <div>
               <Typography
                 variant="h5"
@@ -171,7 +175,7 @@ const Form = () => {
               <div className={classes.label}>Street Address</div>
 
               <FormField
-                name="senderStreet"
+                name="senderAddress"
                 vlaue={invoiceData.senderAddress.street}
                 onChange={(e) =>
                   setInvocieData({
@@ -182,14 +186,17 @@ const Form = () => {
                     },
                   })
                 }
+                validators={['required']}
+                errorMessages={['this field is required']}
                 fullWidth={true}
               />
+
               <div className={classes.flex}>
                 <div className={classes.space}>
                   <div className={classes.label}>City</div>
 
                   <FormField
-                    name="senderStreet"
+                    name="senderCity"
                     vlaue={invoiceData.senderAddress.city}
                     onChange={(e) =>
                       setInvocieData({
@@ -200,6 +207,8 @@ const Form = () => {
                         },
                       })
                     }
+                    validators={['required']}
+                    errorMessages={['this field is required']}
                   />
                 </div>
                 <div className={classes.space}>
@@ -217,6 +226,8 @@ const Form = () => {
                         },
                       })
                     }
+                    validators={['required']}
+                    errorMessages={['this field is required']}
                   />
                 </div>
                 <div className={classes.space}>
@@ -234,6 +245,8 @@ const Form = () => {
                         },
                       })
                     }
+                    validators={['required']}
+                    errorMessages={['this field is required']}
                   />
                 </div>
               </div>
@@ -255,12 +268,11 @@ const Form = () => {
                 }
               />
               <div className={classes.label}>Client's Email</div>
-              <TextField
-                name="clientEmail"
+
+              <FormField
+                ame="clientEmail"
                 value={invoiceData.clientEmail}
-                variant="outlined"
-                size="small"
-                fullWidth
+                fullWidth={true}
                 onChange={(e) =>
                   setInvocieData({
                     ...invoiceData,
@@ -360,9 +372,11 @@ const Form = () => {
                 <div>
                   <div className={classes.label}>Payment terms</div>
                   <div>
-                    <Select
+                    <SelectValidator
                       name="paymentTerms"
                       value={invoiceData.paymentTerms}
+                      validators={['required']}
+                      errorMessages={['this field is required']}
                       onChange={(e) => {
                         setInvocieData({
                           ...invoiceData,
@@ -372,7 +386,6 @@ const Form = () => {
                             : '',
                         });
                       }}
-                      autoWidth
                     >
                       <MenuItem value={''}>
                         <em>None</em>
@@ -381,7 +394,7 @@ const Form = () => {
                       <MenuItem value={14}>Next 14 days</MenuItem>
                       <MenuItem value={7}>Next 7 day</MenuItem>
                       <MenuItem value={1}>Next 1 day</MenuItem>
-                    </Select>
+                    </SelectValidator>
                   </div>
                 </div>
               </div>
@@ -442,7 +455,7 @@ const Form = () => {
                 </Button>
               </div>
             </div>
-          </form>
+          </ValidatorForm>
         </Paper>
       </Container>
     </div>

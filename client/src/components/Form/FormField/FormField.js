@@ -1,15 +1,18 @@
 import React from 'react';
-import { TextField } from '@material-ui/core';
+// import { TextField } from '@material-ui/core';
+import { TextValidator } from 'react-material-ui-form-validator';
 
 const FormField = ({
   name,
   value,
-  fullWidth = false,
   onChange,
+  validators = ['required'],
+  errorMessages = ['this field is required'],
+  fullWidth = false,
   type = 'text',
 }) => {
   return (
-    <TextField
+    <TextValidator
       name={name}
       value={value}
       variant="outlined"
@@ -17,6 +20,8 @@ const FormField = ({
       onChange={onChange}
       fullWidth={fullWidth}
       type={type}
+      validators={validators}
+      errorMessages={errorMessages}
     />
   );
 };

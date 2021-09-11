@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
 
   btn: {
     marginTop: 20,
+    borderRadius: '25px',
+    fontWeight: '700',
+    fontSize: '12px',
   },
 }));
 

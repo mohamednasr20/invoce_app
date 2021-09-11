@@ -39,6 +39,7 @@ const Form = () => {
     clientName: '',
     clientEmail: '',
     status: 'pending',
+
     senderAddress: {
       street: '',
       city: '',
@@ -184,8 +185,6 @@ const Form = () => {
                     },
                   })
                 }
-                validators={['required']}
-                errorMessages={['this field is required']}
                 fullWidth={true}
               />
 
@@ -205,8 +204,6 @@ const Form = () => {
                         },
                       })
                     }
-                    validators={['required']}
-                    errorMessages={['this field is required']}
                   />
                 </div>
                 <div className={classes.space}>
@@ -224,8 +221,6 @@ const Form = () => {
                         },
                       })
                     }
-                    validators={['required']}
-                    errorMessages={['this field is required']}
                   />
                 </div>
                 <div className={classes.space}>
@@ -243,8 +238,6 @@ const Form = () => {
                         },
                       })
                     }
-                    validators={['required']}
-                    errorMessages={['this field is required']}
                   />
                 </div>
               </div>
@@ -278,7 +271,7 @@ const Form = () => {
                   })
                 }
                 validators={['required', 'isEmail']}
-                errorMessages={['this field is required', 'email is invalid']}
+                errorMessages={["can't be empty", 'email is invalid']}
               />
               <div className={classes.label}>Street Address</div>
 
@@ -376,7 +369,7 @@ const Form = () => {
                       name="paymentTerms"
                       value={invoiceData.paymentTerms}
                       validators={['required']}
-                      errorMessages={['this field is required']}
+                      errorMessages={["can't be empty"]}
                       onChange={(e) => {
                         setInvocieData({
                           ...invoiceData,
@@ -434,6 +427,7 @@ const Form = () => {
               <Button
                 variant="contained"
                 onClick={() => dispatch(toggleFormShow())}
+                className={classes.btn}
               >
                 {currentId ? 'Cancel' : 'Discard'}
               </Button>

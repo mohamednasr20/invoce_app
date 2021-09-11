@@ -7,9 +7,11 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     width: '100%',
     background: 'rgba(0, 0 , 0 , 0.4)',
+    overflow: 'scroll',
   },
   formContainer: {
     width: '504px',
+    height: '100vh',
     marginLeft: '80px',
   },
   flex: {
@@ -48,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
 
   btn: {
     marginRight: 10,
+    borderRadius: '25px',
+    fontWeight: '700',
+    fontSize: '12px',
   },
 
   btnList: {

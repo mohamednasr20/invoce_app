@@ -18,7 +18,7 @@ const Item = ({ item, handleChangeItem, deleteItem }) => {
           fullWidth
           onChange={(e) => handleChangeItem(e, item)}
           validators={['required']}
-          errorMessages={['required']}
+          errorMessages={["can't be empty"]}
         />
       </Grid>
       <Grid item xs={2}>
@@ -29,7 +29,7 @@ const Item = ({ item, handleChangeItem, deleteItem }) => {
           size="small"
           onChange={(e) => handleChangeItem(e, item)}
           validators={['required', 'minNumber: 1']}
-          errorMessages={['required', "quantity can't be  0"]}
+          errorMessages={["can't be empty", "quantity can't be  0"]}
         />
       </Grid>
       <Grid item xs={3}>
@@ -40,7 +40,7 @@ const Item = ({ item, handleChangeItem, deleteItem }) => {
           size="small"
           onChange={(e) => handleChangeItem(e, item)}
           validators={['required', 'minNumber: 1']}
-          errorMessages={['required', "pric can't be 0"]}
+          errorMessages={["can't be empty", "price can't be 0"]}
         />
       </Grid>
       <Grid item xs={2}>
@@ -54,7 +54,7 @@ const Item = ({ item, handleChangeItem, deleteItem }) => {
           variant="outlined"
           size="small"
           validators={['required']}
-          errorMessages={['required']}
+          errorMessages={["can't be empty"]}
         />
       </Grid>
       <Grid item xs={1} className={classes.iconGrid}>

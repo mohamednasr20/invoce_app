@@ -6,7 +6,7 @@ const FormField = ({
   value,
   onChange,
   validators = ['required'],
-  errorMessages = ['this field is required'],
+  errorMessages = ["can't be empty"],
   fullWidth = false,
   type = 'text',
 }) => {

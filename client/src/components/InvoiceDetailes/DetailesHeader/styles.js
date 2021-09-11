@@ -24,9 +24,15 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 30,
     padding: '5px 25px',
     borderRadius: '6px',
+    display: 'list-item',
+    listStyleType: 'disc',
+    listStylePosition: 'inside',
   },
   btn: {
     marginRight: 8,
+    borderRadius: '25px',
+    fontWeight: '700',
+    fontSize: '12px',
   },
 }));
 

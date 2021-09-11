@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
         : 'rgb(51, 214, 159, 0.1)',
     borderRadius: '6px',
     textAlign: 'center',
+    display: 'list-item',
+    listStyleType: 'disc',
+    listStylePosition: 'inside',
   },
   icon: {
     cursor: 'pointer',

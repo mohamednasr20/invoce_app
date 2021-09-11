@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     padding: 0,
     boxSizing: 'border-box',
+    fontFamily: "'Spartan', sans-serif",
   },
   container: {
     maxWidth: 730,

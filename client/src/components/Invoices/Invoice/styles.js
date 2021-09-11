@@ -6,6 +6,8 @@ const useStyles = makeStyles((theme) => ({
     padding: '25px 10px',
     borderRadius: 8,
     minWidth: 680,
+    fontSize: '12px',
+    fontWeight: '500',
   },
   boldFont: {
     fontWeight: 700,

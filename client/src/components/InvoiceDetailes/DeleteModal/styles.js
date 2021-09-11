@@ -32,5 +32,8 @@ export const useStyles = makeStyles((theme) => ({
   },
   btn: {
     marginRight: '15px',
+    borderRadius: '25px',
+    fontWeight: '700',
+    fontSize: '12px',
   },
 }));

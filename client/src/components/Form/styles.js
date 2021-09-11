@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     background: 'rgba(0, 0 , 0 , 0.4)',
     overflow: 'scroll',
+    fontSize: '12px',
   },
   formContainer: {
     width: '504px',

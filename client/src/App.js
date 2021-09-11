@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { darkTheme, lightTheme } from './Theme';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PermanentDrawerLeft from './components/Drawer/PermanentDraweLeftr';
+import PermanentDrawerLeft from './components/Drawer/PermanentDraweLeft';
+import Navbar from './components/NavbarSmallScreen/Navbar';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import useStyles from './styles';
@@ -27,6 +28,7 @@ const App = () => {
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <Router>
         <Box bgcolor="info.main" className={classes.root}>
+          <Navbar />
           <Container className={classes.container}>
             <PermanentDrawerLeft />
             <Switch>

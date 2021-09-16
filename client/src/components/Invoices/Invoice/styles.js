@@ -7,6 +7,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 8,
     fontSize: '12px',
     fontWeight: '500',
+
+    [theme.breakpoints.down('sm')]: {
+      padding: '25px',
+    },
   },
 
   boldFont: {
@@ -25,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
       invoice.status === 'pending'
         ? 'rgb(255, 143, 0, 0.1)'
         : 'rgb(51, 214, 159, 0.1)',
-    borderRadius: '6px',
     textAlign: 'center',
     display: 'list-item',
     listStyleType: 'disc',

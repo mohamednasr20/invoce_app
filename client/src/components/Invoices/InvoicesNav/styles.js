@@ -6,10 +6,25 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     marginBottom: 50,
   },
+  header: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '20px',
+      marginTop: '10px',
+    },
+  },
 
+  caption: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '12px',
+    },
+  },
   formControl: {
     minWidth: 120,
     marginRight: 30,
+
+    [theme.breakpoints.down('xs')]: {
+      minWidth: 54,
+    },
   },
 
   filterLabel: {
@@ -17,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     marginRight: 10,
+    [theme.breakpoints.down('xs')]: {
+      marginRight: 3,
+    },
   },
 
   btn: {
@@ -24,6 +42,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '25px',
     fontWeight: '700',
     fontSize: '12px',
+  },
+
+  [theme.breakpoints.down('xs')]: {
+    maxWidth: 90,
   },
 }));
 

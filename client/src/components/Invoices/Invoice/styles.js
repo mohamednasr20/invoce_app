@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '12px',
     fontWeight: '500',
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       padding: '25px',
     },
   },

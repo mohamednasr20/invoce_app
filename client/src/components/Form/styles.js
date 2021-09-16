@@ -14,6 +14,11 @@ const useStyles = makeStyles((theme) => ({
     width: '504px',
     height: '100vh',
     marginLeft: '80px',
+
+    [theme.breakpoints.down('md')]: {
+      marginLeft: 0,
+      width: '100vw',
+    },
   },
   flex: {
     display: 'flex',

@@ -5,10 +5,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 20,
     padding: '25px 10px',
     borderRadius: 8,
-    minWidth: 680,
     fontSize: '12px',
     fontWeight: '500',
   },
+
   boldFont: {
     fontWeight: 700,
   },
@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     fontWeight: 500,
   },
+
   status: {
     fontWeight: 'bold',
     color: ({ invoice }) =>

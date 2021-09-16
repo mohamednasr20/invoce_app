@@ -7,12 +7,10 @@ import avatar from '../../assets/image-avatar.jpg';
 import { switchTheme } from '../../actions/themeMode';
 import { useDispatch, useSelector } from 'react-redux';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { useTheme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 
 const Navbar = () => {
   const classes = useStyles();
-  const theme = useTheme();
   const mDScreen = useMediaQuery('(max-width:960px)');
 
   const dispatch = useDispatch();

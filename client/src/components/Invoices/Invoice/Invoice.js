@@ -16,22 +16,22 @@ const Invoice = ({ invoice }) => {
   return (
     <Paper className={classes.root}>
       <Grid container spacing={1}>
-        <Grid item xs={2} className={classes.boldFont}>
-          {`# ${invoiceId}`}
+        <Grid item xs={6} md={2} className={classes.boldFont}>
+          {`#${invoiceId}`}
         </Grid>
-        <Grid item xs={3} className={classes.lightFont}>
+        <Grid item xs={6} md={3} className={classes.lightFont}>
           {`Due ${invoice.paymentDue}`}
         </Grid>
-        <Grid item xs={2} className={classes.lightFont}>
+        <Grid item xs={6} md={2} className={classes.lightFont}>
           {invoice.clientName}
         </Grid>
-        <Grid item xs={2} className={classes.boldFont}>
+        <Grid item xs={6} md={2} className={classes.boldFont}>
           {`$${invoice.total}`}
         </Grid>
-        <Grid item xs={2} className={classes.status}>
+        <Grid item xs={6} md={2} className={classes.status}>
           {invoice.status}
         </Grid>
-        <Grid item xs={1} className={classes.icon}>
+        <Grid item xs={6} md={1} className={classes.icon}>
           <Link to={`/invoices/${invoice._id}`}>
             <ArrowForwardIosIcon
               fontSize="small"

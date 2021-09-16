@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     marginLeft: '80px',
 
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       marginLeft: 0,
       width: '100vw',
     },
@@ -25,9 +25,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     marginTop: 20,
     marginBottom: 20,
+
+    [theme.breakpoints.down('xs')]: {
+      display: 'block',
+    },
   },
 
   paper: {
+    paddingTop: 40,
     padding: 20,
     borderRadius: 15,
   },
@@ -52,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
   btnRight: {
     marginLeft: 'auto',
+    display: 'flex',
   },
 
   btn: {
@@ -59,6 +65,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '25px',
     fontWeight: '700',
     fontSize: '12px',
+    lineHeight: '15px',
+    spaceLetter: '-0.25',
   },
 
   btnList: {

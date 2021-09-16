@@ -3,6 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: 30,
+    width: '730px',
+    [theme.breakpoints.down('xs')]: {
+      width: '327px',
+    },
+    margin: 'auto',
   },
 }));
 

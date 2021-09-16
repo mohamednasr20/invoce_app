@@ -1,7 +1,6 @@
 import React from 'react';
 import ItemsList from '../ItemsList/ItemsList';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
+import { Typography, Paper, Grid } from '@material-ui/core';
 import useStyles from './styles';
 
 const DetailesBody = ({ invoice }) => {
@@ -9,8 +8,8 @@ const DetailesBody = ({ invoice }) => {
 
   return (
     <Paper className={classes.root}>
-      <div className={classes.flex}>
-        <div>
+      <Grid container spacing={1}>
+        <Grid item md={9} xs={12}>
           <Typography
             variant="h6"
             className={classes.bold}
@@ -18,8 +17,8 @@ const DetailesBody = ({ invoice }) => {
           <Typography variant="subtitle1" color="textSecondary">
             {invoice.description}
           </Typography>
-        </div>
-        <div>
+        </Grid>
+        <Grid item md={3} xs={12}>
           <Typography variant="subtitle1" color="textSecondary">
             {invoice.senderAddress.street}
           </Typography>
@@ -32,10 +31,9 @@ const DetailesBody = ({ invoice }) => {
           <Typography variant="subtitle1" color="textSecondary">
             {invoice.senderAddress.country}
           </Typography>
-        </div>
-      </div>
-      <div className={classes.flex}>
-        <div>
+        </Grid>
+
+        <Grid item md={4} xs={6}>
           <Typography
             variant="subtitle1"
             className={classes.label}
@@ -56,8 +54,9 @@ const DetailesBody = ({ invoice }) => {
           <Typography variant="h6" className={classes.bold}>
             {invoice.paymentDue}
           </Typography>
-        </div>
-        <div>
+        </Grid>
+
+        <Grid item md={3} xs={6}>
           <Typography
             variant="subtitle1"
             className={classes.label}
@@ -80,8 +79,8 @@ const DetailesBody = ({ invoice }) => {
           <Typography variant="subtitle1" className={classes.bold}>
             {invoice.clientAddress.country}
           </Typography>
-        </div>
-        <div>
+        </Grid>
+        <Grid item md={4} xs={12}>
           <Typography
             variant="subtitle1"
             className={classes.label}
@@ -92,8 +91,9 @@ const DetailesBody = ({ invoice }) => {
           <Typography variant="h6" className={classes.bold}>
             {invoice.clientEmail}
           </Typography>
-        </div>
-      </div>
+        </Grid>
+      </Grid>
+
       <ItemsList items={invoice.items} total={invoice.total} />
     </Paper>
   );

@@ -25,6 +25,10 @@ export const useStyles = makeStyles((theme) => ({
     width: '480px',
     height: '250px',
     padding: theme.spacing(4),
+    [theme.breakpoints.down('sm')]: {
+      width: '320px',
+      height: '220px',
+    },
   },
   warning: {
     marginBottom: '20px',

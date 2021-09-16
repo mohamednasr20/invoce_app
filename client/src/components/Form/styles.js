@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     top: 0,
     left: 0,
-    width: '100%',
+    width: '100vw',
     background: 'rgba(0, 0 , 0 , 0.4)',
     overflow: 'scroll',
     fontSize: '12px',
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.down('sm')]: {
       marginLeft: 0,
-      width: '100vw',
+      width: '100%',
     },
   },
   flex: {

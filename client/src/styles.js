@@ -6,6 +6,13 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     boxSizing: 'border-box',
     fontFamily: "'Spartan', sans-serif",
+    height: '100%',
+    [theme.breakpoints.down('md')]: {
+      height: '100vh',
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: '100%',
+    },
   },
   container: {
     maxWidth: 730,

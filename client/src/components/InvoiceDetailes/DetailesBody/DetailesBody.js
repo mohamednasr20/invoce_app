@@ -9,7 +9,7 @@ const DetailesBody = ({ invoice }) => {
   return (
     <Paper className={classes.root}>
       <Grid container spacing={1}>
-        <Grid item md={9} xs={12}>
+        <Grid item sm={9} xs={12}>
           <Typography
             variant="h6"
             className={classes.bold}
@@ -18,7 +18,7 @@ const DetailesBody = ({ invoice }) => {
             {invoice.description}
           </Typography>
         </Grid>
-        <Grid item md={3} xs={12}>
+        <Grid item sm={3} xs={12}>
           <Typography variant="subtitle1" color="textSecondary">
             {invoice.senderAddress.street}
           </Typography>
@@ -33,7 +33,7 @@ const DetailesBody = ({ invoice }) => {
           </Typography>
         </Grid>
 
-        <Grid item md={4} xs={6}>
+        <Grid item sm={4} xs={6}>
           <Typography
             variant="subtitle1"
             className={classes.label}
@@ -45,7 +45,7 @@ const DetailesBody = ({ invoice }) => {
             {invoice.createdAt}
           </Typography>
           <Typography
-            className={`${classes.paymentDue} ${classes.label}`}
+            className={classes.label}
             variant="subtitle1"
             color="textSecondary"
           >
@@ -56,7 +56,7 @@ const DetailesBody = ({ invoice }) => {
           </Typography>
         </Grid>
 
-        <Grid item md={3} xs={6}>
+        <Grid item sm={3} xs={6}>
           <Typography
             variant="subtitle1"
             className={classes.label}
@@ -67,20 +67,20 @@ const DetailesBody = ({ invoice }) => {
           <Typography variant="h6" className={classes.bold}>
             {invoice.clientName}
           </Typography>
-          <Typography variant="subtitle1" className={classes.bold}>
+          <Typography variant="subtitle1" color="textSecondary">
             {invoice.clientAddress.street}
           </Typography>
-          <Typography variant="subtitle1" className={classes.bold}>
+          <Typography variant="subtitle1" color="textSecondary">
             {invoice.clientAddress.city}
           </Typography>
-          <Typography variant="subtitle1" className={classes.bold}>
+          <Typography variant="subtitle1" color="textSecondary">
             {invoice.clientAddress.postCode}
           </Typography>
-          <Typography variant="subtitle1" className={classes.bold}>
+          <Typography variant="subtitle1" color="textSecondary">
             {invoice.clientAddress.country}
           </Typography>
         </Grid>
-        <Grid item md={4} xs={12}>
+        <Grid item sm={4} xs={12}>
           <Typography
             variant="subtitle1"
             className={classes.label}

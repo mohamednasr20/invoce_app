@@ -31,7 +31,7 @@ const Invoice = ({ invoice }) => {
         <Grid item xs={4} sm={2} className={classes.status}>
           {invoice.status}
         </Grid>
-        <Grid item xs={6} sm={1} className={classes.icon}>
+        <Grid item xs={2} sm={1} className={classes.icon}>
           <Link to={`/invoices/${invoice._id}`}>
             <ArrowForwardIosIcon
               fontSize="small"

@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import DetailesHeader from './DetailesHeader/DetailesHeader';
 import DetailesBody from './DetailesBody/DetailesBody';
 import DeleteModal from './DeleteModal/DeleteModal';
+import SmallScreenBtns from './SmallScreenBtns/SmallScreenBtns';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import { handleCurrentId } from '../../actions/themeMode';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './styles';
 
 const InvoiceDetailes = ({ setCurrentId }) => {
@@ -14,6 +16,7 @@ const InvoiceDetailes = ({ setCurrentId }) => {
   const invoice = useSelector((state) => state.GlobalState.invoice);
   const history = useHistory();
   const dispatch = useDispatch();
+  const smScreen = useMediaQuery('(max-width:600px)');
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -42,6 +45,7 @@ const InvoiceDetailes = ({ setCurrentId }) => {
             openDeleteModal={handleOpen}
           />
           <DetailesBody invoice={invoice} />
+          {smScreen && <SmallScreenBtns openDeleteModal={handleOpen} />}
           <DeleteModal
             invoice={invoice}
             open={open}

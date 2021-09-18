@@ -19,6 +19,7 @@ import {
   ValidatorForm,
   SelectValidator,
 } from 'react-material-ui-form-validator';
+import { v4 as uuidv4 } from 'uuid';
 
 const Form = () => {
   const classes = useStyles();
@@ -69,13 +70,14 @@ const Form = () => {
           quantity: 0,
           price: 0,
           total: 0,
+          id: uuidv4(),
         },
       ],
     });
   };
 
   const onDeleteItem = (id) => {
-    const newItems = invoiceData.items.filter((item) => item._id !== id);
+    const newItems = invoiceData.items.filter((item) => item.id !== id);
     setInvocieData({ ...invoiceData, items: newItems });
   };
 

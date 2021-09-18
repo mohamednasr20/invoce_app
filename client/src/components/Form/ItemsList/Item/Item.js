@@ -60,7 +60,7 @@ const Item = ({ item, handleChangeItem, deleteItem }) => {
       <Grid item xs={1} className={classes.iconGrid}>
         <DeleteIcon
           className={classes.icon}
-          onClick={() => deleteItem(item._id)}
+          onClick={() => deleteItem(item.id)}
         />
       </Grid>
     </Grid>

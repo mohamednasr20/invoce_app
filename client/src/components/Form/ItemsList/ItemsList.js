@@ -1,7 +1,6 @@
 import React from 'react';
 import Item from './Item/Item';
 import { Typography, Grid } from '@material-ui/core';
-import { v4 as uuidv4 } from 'uuid';
 import useStyles from './styles';
 const ItemsList = ({ items, handleChangeItem, deleteItem }) => {
   const classes = useStyles();
@@ -10,7 +9,7 @@ const ItemsList = ({ items, handleChangeItem, deleteItem }) => {
     items.length > 0
       ? items.map((item) => (
           <Item
-            key={() => uuidv4()}
+            key={item.id}
             item={item}
             handleChangeItem={handleChangeItem}
             deleteItem={deleteItem}

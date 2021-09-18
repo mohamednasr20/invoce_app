@@ -3,7 +3,7 @@ import Item from './Item/Item';
 import { Typography, Grid } from '@material-ui/core';
 import { v4 as uuidv4 } from 'uuid';
 import useStyles from './styles';
-const ItemsList = ({ items, handleChangeItem, deleteItem, itemError }) => {
+const ItemsList = ({ items, handleChangeItem, deleteItem }) => {
   const classes = useStyles();
 
   const showItems =
@@ -38,11 +38,6 @@ const ItemsList = ({ items, handleChangeItem, deleteItem, itemError }) => {
         </Grid>
       </Grid>
       {showItems}
-      {itemError ? (
-        <Typography className={classes.error} variant="body1" color="error">
-          please Fill this field first
-        </Typography>
-      ) : null}
     </div>
   );
 };

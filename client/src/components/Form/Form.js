@@ -11,6 +11,7 @@ import {
   MenuItem,
   Button,
   Paper,
+  Modal,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import useStyles from './styles';
@@ -57,29 +58,20 @@ const Form = () => {
   };
 
   const [invoiceData, setInvocieData] = useState(data);
-  const [itemError, setItemError] = useState(false);
 
   const addItemField = () => {
-    const emptyInput = invoiceData.items.find((item) => !item.name);
-    if (emptyInput) {
-      setItemError(true);
-      setTimeout(() => {
-        setItemError(false);
-      }, 1500);
-    } else {
-      setInvocieData({
-        ...invoiceData,
-        items: [
-          ...invoiceData.items,
-          {
-            name: '',
-            quantity: 0,
-            price: 0,
-            total: 0,
-          },
-        ],
-      });
-    }
+    setInvocieData({
+      ...invoiceData,
+      items: [
+        ...invoiceData.items,
+        {
+          name: '',
+          quantity: 0,
+          price: 0,
+          total: 0,
+        },
+      ],
+    });
   };
 
   const onDeleteItem = (id) => {
@@ -152,8 +144,12 @@ const Form = () => {
     // eslint-disable-next-line
   }, [currentId]);
   return (
-    <div
-      style={{ display: showForm ? 'block' : 'none' }}
+    <Modal
+      open={showForm}
+      onClose={() => dispatch(toggleFormShow())}
+      aria-labelledby="simple-modal-title"
+      aria-describedby="simple-modal-description"
+      // style={{ display: showForm ? 'block' : 'none' }}
       className={classes.root}
     >
       <Container className={classes.formContainer}>
@@ -404,14 +400,13 @@ const Form = () => {
                   })
                 }
               />
-              {invoiceData.items.length > 0 ? (
+              {invoiceData.items.length > 0 && (
                 <ItemsList
                   items={invoiceData.items}
                   handleChangeItem={handleChangeItemValue}
                   deleteItem={onDeleteItem}
-                  itemError={itemError}
                 />
-              ) : null}
+              )}
             </div>
 
             <Button
@@ -452,7 +447,7 @@ const Form = () => {
           </ValidatorForm>
         </Paper>
       </Container>
-    </div>
+    </Modal>
   );
 };
 

@@ -94,7 +94,9 @@ const DetailesBody = ({ invoice }) => {
         </Grid>
       </Grid>
 
-      <ItemsList items={invoice.items} total={invoice.total} />
+      {invoice.items.length && (
+        <ItemsList items={invoice.items} total={invoice.total} />
+      )}
     </Paper>
   );
 };

@@ -76,9 +76,20 @@ const Form = () => {
     });
   };
 
+  const getTotal = (items) =>
+    items.length > 0
+      ? items
+          .map((item) => Number(item.total))
+          .reduce((acc, currentValue) => acc + currentValue)
+      : 0;
+
   const onDeleteItem = (id) => {
     const newItems = invoiceData.items.filter((item) => item.id !== id);
-    setInvocieData({ ...invoiceData, items: newItems });
+    setInvocieData({
+      ...invoiceData,
+      items: newItems,
+      total: getTotal(newItems),
+    });
   };
 
   const handleChangeItemValue = (e, i) => {
@@ -103,9 +114,7 @@ const Form = () => {
     setInvocieData({
       ...invoiceData,
       items: newItems,
-      total: newItems
-        .map((item) => Number(item.total))
-        .reduce((acc, currentValue) => acc + currentValue),
+      total: getTotal(newItems),
     });
   };
 

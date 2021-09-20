@@ -28,8 +28,8 @@ const Invoice = ({ invoice }) => {
         <Grid item xs={6} sm={2} className={classes.boldFont}>
           {`$${invoice.total}`}
         </Grid>
-        <Grid item xs={4} sm={2} className={classes.status}>
-          {invoice.status}
+        <Grid item xs={4} sm={2}>
+          <div className={classes.status}>{invoice.status}</div>
         </Grid>
         <Grid item xs={2} sm={1} className={classes.icon}>
           <Link to={`/invoices/${invoice._id}`}>

@@ -2,6 +2,7 @@ import React from 'react';
 import Item from './Item/Item';
 import { Typography, Grid } from '@material-ui/core';
 import useStyles from './styles';
+
 const ItemsList = ({ items, handleChangeItem, deleteItem }) => {
   const classes = useStyles();
 

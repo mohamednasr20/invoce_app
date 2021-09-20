@@ -17,6 +17,9 @@ const itemSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  id: {
+    type: String,
+  },
 });
 
 const addressSchema = mongoose.Schema({

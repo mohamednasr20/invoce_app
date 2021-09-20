@@ -55,7 +55,7 @@ const InvoicesNav = ({ invoices, status, changeStatus }) => {
             onChange={changeStatus}
           >
             <MenuItem value="">
-              <em>None</em>
+              <em>all</em>
             </MenuItem>
             <MenuItem value={'pending'}>pending</MenuItem>
             <MenuItem value={'paid'}>paid</MenuItem>

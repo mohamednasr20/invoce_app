@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, Paper, Typography } from '@material-ui/core';
 
-const DeleteModal = ({ invoice, open, handleClose }) => {
+const DeleteModal = ({ invoice, isOpen, handleClose }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,10 +23,10 @@ const DeleteModal = ({ invoice, open, handleClose }) => {
   return (
     <div className={classes.root}>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={isOpen}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
+        onClose={handleClose}
       >
         <div>
           <Paper className={classes.modalBox} style={modalStyle}>

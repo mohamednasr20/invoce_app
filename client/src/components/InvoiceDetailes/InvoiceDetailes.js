@@ -34,7 +34,7 @@ const InvoiceDetailes = ({ setCurrentId }) => {
 
   return (
     <div>
-      {invoice && invoice._id ? (
+      {invoice && invoice._id && (
         <div className={classes.root}>
           <Button onClick={onGoBack}>
             <ArrowBackIosIcon fontSize="small" /> Go Back
@@ -48,11 +48,11 @@ const InvoiceDetailes = ({ setCurrentId }) => {
           {smScreen && <SmallScreenBtns openDeleteModal={handleOpen} />}
           <DeleteModal
             invoice={invoice}
-            open={open}
+            isOpen={open}
             handleClose={handleClose}
           />
         </div>
-      ) : null}
+      )}
     </div>
   );
 };

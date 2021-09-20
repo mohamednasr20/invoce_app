@@ -147,7 +147,7 @@ const Form = () => {
   }, [currentId]);
   return (
     <Modal
-      open={showForm}
+      open={showForm === undefined ? false : showForm}
       onClose={() => dispatch(toggleFormShow())}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
@@ -173,7 +173,7 @@ const Form = () => {
 
               <FormField
                 name="senderAddress"
-                vlaue={invoiceData.senderAddress.street}
+                value={invoiceData.senderAddress.street}
                 onChange={(e) =>
                   setInvocieData({
                     ...invoiceData,
@@ -192,7 +192,7 @@ const Form = () => {
 
                   <FormField
                     name="senderCity"
-                    vlaue={invoiceData.senderAddress.city}
+                    value={invoiceData.senderAddress.city}
                     onChange={(e) =>
                       setInvocieData({
                         ...invoiceData,
@@ -209,7 +209,7 @@ const Form = () => {
 
                   <FormField
                     name="senderPostCode"
-                    vlaue={invoiceData.senderAddress.postCode}
+                    value={invoiceData.senderAddress.postCode}
                     onChange={(e) =>
                       setInvocieData({
                         ...invoiceData,
@@ -327,7 +327,7 @@ const Form = () => {
 
                   <FormField
                     name="clientCountry"
-                    vlaue={invoiceData.clientAddress.country}
+                    value={invoiceData.clientAddress.country}
                     onChange={(e) =>
                       setInvocieData({
                         ...invoiceData,
@@ -433,6 +433,10 @@ const Form = () => {
                   style={{ display: currentId ? 'none' : 'inline' }}
                   className={classes.btn}
                   variant="outlined"
+                  type="submit"
+                  onClick={() =>
+                    setInvocieData({ ...invoiceData, status: 'draft' })
+                  }
                 >
                   Save As Draft
                 </Button>

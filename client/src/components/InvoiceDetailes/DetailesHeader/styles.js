@@ -16,9 +16,15 @@ const useStyles = makeStyles((theme) => ({
   status: {
     fontWeight: 'bold',
     color: ({ invoice }) =>
-      invoice.status === 'pending' ? '#FF8F00' : '#33D69F',
+      invoice.status === 'draft'
+        ? theme.palette.text.primary
+        : invoice.status === 'pending'
+        ? '#FF8F00'
+        : '#33D69F',
     background: ({ invoice }) =>
-      invoice.status === 'pending'
+      invoice.status === 'draft'
+        ? theme.palette.divider
+        : invoice.status === 'pending'
         ? 'rgb(255, 143, 0, 0.1)'
         : 'rgb(51, 214, 159, 0.1)',
     marginLeft: 30,

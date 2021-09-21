@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import ItemsList from './ItemsList/ItemsList';
 import { createInvoice, updateInvoice } from '../../actions/invoices';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleFormShow, handleCurrentId } from '../../actions/themeMode';
+import { toggleFormShow, handleCurrentId } from '../../actions/genralState';
 import {
   Container,
   Typography,
@@ -29,7 +29,7 @@ const Form = () => {
   const currentId = useSelector((state) => state.GlobalState.currentId);
   const invoice = useSelector((state) =>
     currentId
-      ? state.GlobalState.invoices.find((invoice) => invoice._id === currentId)
+      ? state.Invoices.invoices.find((invoice) => invoice._id === currentId)
       : null
   );
 

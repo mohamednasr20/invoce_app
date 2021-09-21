@@ -1,15 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { toggleFormShow } from '../../../actions/themeMode';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
+import { toggleFormShow } from '../../../actions/genralState';
+import {
+  Typography,
+  Button,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
+} from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import useStyles from './styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const InvoicesNav = ({ invoices, status, changeStatus }) => {
   const classes = useStyles();

@@ -10,7 +10,7 @@ const ItemsList = ({ items, handleChangeItem, deleteItem }) => {
     items.length > 0
       ? items.map((item) => (
           <Item
-            key={item.id}
+            key={item._id ? item._id : item.id}
             item={item}
             handleChangeItem={handleChangeItem}
             deleteItem={deleteItem}

@@ -1,15 +1,14 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import useStyles from './styles';
-import Paper from '@material-ui/core/Paper';
 import { updateInvoiceStatus } from '../../../actions/invoices';
-import { toggleFormShow, handleCurrentId } from '../../../actions/themeMode';
+import { toggleFormShow, handleCurrentId } from '../../../actions/genralState';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button, Paper } from '@material-ui/core';
+import useStyles from './styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const DetailesHeader = ({ openDeleteModal }) => {
   const dispatch = useDispatch();
-  const invoice = useSelector((state) => state.GlobalState.invoice);
+  const invoice = useSelector((state) => state.Invoices.invoice);
   const classes = useStyles({ invoice });
   const smScreen = useMediaQuery('(max-width:600px)');
 

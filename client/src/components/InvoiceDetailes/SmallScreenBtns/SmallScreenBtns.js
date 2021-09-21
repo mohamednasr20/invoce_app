@@ -1,9 +1,9 @@
 import React from 'react';
+import { updateInvoiceStatus } from '../../../actions/invoices';
+import { toggleFormShow, handleCurrentId } from '../../../actions/genralState';
+import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './styles';
 import { Button, Paper } from '@material-ui/core';
-import { updateInvoiceStatus } from '../../../actions/invoices';
-import { toggleFormShow, handleCurrentId } from '../../../actions/themeMode';
-import { useDispatch, useSelector } from 'react-redux';
 
 const SmallScreenBtns = ({ openDeleteModal }) => {
   const invoice = useSelector((state) => state.GlobalState.invoice);

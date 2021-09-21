@@ -7,13 +7,13 @@ import SmallScreenBtns from './SmallScreenBtns/SmallScreenBtns';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
-import { handleCurrentId } from '../../actions/themeMode';
+import { handleCurrentId } from '../../actions/genralState';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './styles';
 
 const InvoiceDetailes = ({ setCurrentId }) => {
   const classes = useStyles();
-  const invoice = useSelector((state) => state.GlobalState.invoice);
+  const invoice = useSelector((state) => state.Invoices.invoice);
   const history = useHistory();
   const dispatch = useDispatch();
   const smScreen = useMediaQuery('(max-width:600px)');

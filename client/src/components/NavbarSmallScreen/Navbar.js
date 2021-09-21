@@ -1,13 +1,13 @@
 import React from 'react';
-import useStyles from './styles';
 import iconMoon from '../../assets/icon-moon.svg';
 import iconSun from '../../assets/icon-sun.svg';
 import logo from '../../assets/logo.svg';
 import avatar from '../../assets/image-avatar.jpg';
-import { switchTheme } from '../../actions/themeMode';
+import { switchTheme } from '../../actions/genralState';
 import { useDispatch, useSelector } from 'react-redux';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Avatar from '@material-ui/core/Avatar';
+import useStyles from './styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const Navbar = () => {
   const classes = useStyles();

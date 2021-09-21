@@ -17,8 +17,8 @@ const App = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isDarkMode = useSelector((state) => state.GlobalState.isDarkMode);
-  const invoices = useSelector((state) => state.GlobalState.invoices);
-  const invoice = useSelector((state) => state.GlobalState.invoice);
+  const invoices = useSelector((state) => state.Invoices.invoices);
+  const invoice = useSelector((state) => state.Invoices.invoice);
 
   useEffect(() => {
     dispatch(getInvoices());

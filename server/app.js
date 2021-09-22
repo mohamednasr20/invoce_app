@@ -12,8 +12,6 @@ const connectDB = async () => {
     await mongoose.connect(config.MONGODB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
     });
     console.log('connected to MongoDB');
   } catch (error) {
@@ -22,6 +20,7 @@ const connectDB = async () => {
 };
 
 connectDB();
+mongoose.set('bufferCommands', false);
 
 app.use(cors());
 app.use(express.static('build'));

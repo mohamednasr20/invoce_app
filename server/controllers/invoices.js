@@ -18,7 +18,7 @@ export const getInvoice = async (req, res) => {
     const invocie = await Invoice.findById(id);
     res.status(200).json(invocie);
   } catch (error) {
-    res.status(404).json({ messag: error.message });
+    res.status(404).json({ message: error.message });
   }
 };
 

@@ -4,6 +4,6 @@ import config from './utils/config.js';
 
 const server = http.createServer(app);
 
-server.listen(config.PORT, () => {
+server.listen(config.PORT || 5000, () => {
   console.log(`Server running on port ${config.PORT}`);
 });

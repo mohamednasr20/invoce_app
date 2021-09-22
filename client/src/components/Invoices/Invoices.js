@@ -19,8 +19,8 @@ const Invoices = () => {
       ? invoices
       : invoices.filter((invoice) => invoice.status === status);
 
-  const itemsList = currentInvoices.length ? (
-    <div className={classes.itemsList}>
+  const invoicesList = currentInvoices.length ? (
+    <div className={classes.invoicesList}>
       {currentInvoices.map((invoice) => (
         <Invoice key={invoice._id} invoice={invoice} />
       ))}
@@ -36,7 +36,7 @@ const Invoices = () => {
         status={status}
         changeStatus={handleChangeStatus}
       />
-      {itemsList}
+      {invoicesList}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import DetailesHeader from './DetailesHeader/DetailesHeader';
 import DetailesBody from './DetailesBody/DetailesBody';
 import DeleteModal from './DeleteModal/DeleteModal';
 import SmallScreenBtns from './SmallScreenBtns/SmallScreenBtns';
+import CircularIndeterminate from '../CircularIndeterminate/CircularIndeterminate';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
@@ -33,12 +34,12 @@ const InvoiceDetailes = ({ setCurrentId }) => {
   };
 
   return (
-    <div>
-      {invoice && invoice._id && (
-        <div className={classes.root}>
-          <Button onClick={onGoBack}>
-            <ArrowBackIosIcon fontSize="small" /> Go Back
-          </Button>
+    <div className={classes.root}>
+      <Button onClick={onGoBack}>
+        <ArrowBackIosIcon fontSize="small" /> Go Back
+      </Button>
+      {invoice && invoice._id ? (
+        <div>
           <DetailesHeader
             invoice={invoice}
             setCurrentId={setCurrentId}
@@ -52,6 +53,8 @@ const InvoiceDetailes = ({ setCurrentId }) => {
             handleClose={handleClose}
           />
         </div>
+      ) : (
+        <CircularIndeterminate />
       )}
     </div>
   );

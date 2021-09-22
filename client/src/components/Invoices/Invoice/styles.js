@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   status: {
-    fontWeight: '500',
+    fontWeight: 'bold',
     textAlgin: 'center',
     color: ({ invoice }) =>
       invoice.status === 'draft'

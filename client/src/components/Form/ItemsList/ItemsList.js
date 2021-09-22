@@ -24,13 +24,13 @@ const ItemsList = ({ items, handleChangeItem, deleteItem }) => {
         Item List
       </Typography>
       <Grid container className={classes.root} spacing={2}>
-        <Grid item xs={5}>
+        <Grid item xs={4}>
           <Typography>Item Name</Typography>
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={2}>
           <Typography>Qty.</Typography>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <Typography>Price</Typography>
         </Grid>
         <Grid item xs={2}>

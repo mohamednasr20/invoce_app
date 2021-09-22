@@ -1,6 +1,5 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import { Grid, Paper } from '@material-ui/core';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { useDispatch } from 'react-redux';
 import useStyles from './styles';

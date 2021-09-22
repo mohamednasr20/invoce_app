@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import FormField from './FormField/FormField';
-import { useHistory } from 'react-router-dom';
 import ItemsList from './ItemsList/ItemsList';
 import { createInvoice, updateInvoice } from '../../actions/invoices';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFormShow, handleCurrentId } from '../../actions/genralState';
+import { data, getTotal, getDueDate, updateItemFields } from '../../helpers';
 import {
   Container,
   Typography,
@@ -13,6 +13,7 @@ import {
   Paper,
   Modal,
 } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add';
 import useStyles from './styles';
 import {
@@ -33,31 +34,6 @@ const Form = () => {
       : null
   );
 
-  const data = {
-    createdAt: '',
-    paymentDue: '',
-    description: '',
-    paymentTerms: '',
-    clientName: '',
-    clientEmail: '',
-    status: 'pending',
-
-    senderAddress: {
-      street: '',
-      city: '',
-      postCode: '',
-      country: '',
-    },
-    clientAddress: {
-      street: '',
-      city: '',
-      postCode: '',
-      country: '',
-    },
-    items: [],
-    total: 0,
-  };
-
   const [invoiceData, setInvocieData] = useState(data);
 
   const addItemField = () => {
@@ -76,13 +52,6 @@ const Form = () => {
     });
   };
 
-  const getTotal = (items) =>
-    items.length > 0
-      ? items
-          .map((item) => Number(item.total))
-          .reduce((acc, currentValue) => acc + currentValue)
-      : 0;
-
   const onDeleteItem = (id) => {
     const newItems = invoiceData.items.filter((item) => item.id !== id);
     setInvocieData({
@@ -92,24 +61,11 @@ const Form = () => {
     });
   };
 
-  const handleChangeItemValue = (e, i) => {
+  const handleChangeItemValue = (e, index) => {
     const inputName = e.target.name;
     let value = e.target.value;
 
-    const newItems = invoiceData.items.map((item, idx) =>
-      idx === invoiceData.items.indexOf(i)
-        ? inputName === 'name'
-          ? { ...item, name: value }
-          : {
-              ...item,
-              [inputName]: Number(value),
-              total:
-                inputName === 'price'
-                  ? value * item.quantity
-                  : value * item.price,
-            }
-        : item
-    );
+    const newItems = updateItemFields(invoiceData, index, inputName, value);
 
     setInvocieData({
       ...invoiceData,
@@ -121,15 +77,6 @@ const Form = () => {
   const clear = () => {
     dispatch(handleCurrentId(null));
     setInvocieData(data);
-  };
-
-  const getDueDate = (created, paymentTerms) => {
-    const date = new Date(created);
-    const dueDate = new Date(date.setDate(date.getDate() + paymentTerms))
-      .toISOString()
-      .split('T')[0];
-
-    return dueDate;
   };
 
   const onSubmit = async (e) => {

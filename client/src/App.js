@@ -2,15 +2,16 @@ import React, { useEffect } from 'react';
 import Invoices from './components/Invoices/Invoices';
 import InvoiceDetailes from './components/InvoiceDetailes/InvoiceDetailes';
 import Form from './components/Form/Form';
+import PermanentDrawerLeft from './components/Drawer/PermanentDraweLeft';
+import Navbar from './components/NavbarSmallScreen/Navbar';
+import Auth from './components/Auth/Auth';
 import { getInvoices } from './actions/invoices';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { darkTheme, lightTheme } from './Theme';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PermanentDrawerLeft from './components/Drawer/PermanentDraweLeft';
-import Navbar from './components/NavbarSmallScreen/Navbar';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
+import { Box, Container } from '@material-ui/core';
+
 import useStyles from './styles';
 
 const App = () => {
@@ -33,6 +34,9 @@ const App = () => {
             <PermanentDrawerLeft />
             <Switch>
               <Route path="/" exact>
+                <Auth />
+              </Route>
+              <Route path="/invoices" exact>
                 <Invoices />
               </Route>
               <Route path="/invoices/:id" exact>

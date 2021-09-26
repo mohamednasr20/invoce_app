@@ -9,7 +9,12 @@ import { getInvoices } from './actions/invoices';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { darkTheme, lightTheme } from './Theme';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import { Box, Container } from '@material-ui/core';
 
 import useStyles from './styles';
@@ -20,6 +25,7 @@ const App = () => {
   const isDarkMode = useSelector((state) => state.GlobalState.isDarkMode);
   const invoices = useSelector((state) => state.Invoices.invoices);
   const invoice = useSelector((state) => state.Invoices.invoice);
+  const isLoggedIn = false;
 
   useEffect(() => {
     dispatch(getInvoices());
@@ -33,14 +39,14 @@ const App = () => {
           <Container className={classes.container}>
             <PermanentDrawerLeft />
             <Switch>
-              <Route path="/" exact>
+              <Route path="/login" exact>
                 <Auth />
               </Route>
-              <Route path="/invoices" exact>
-                <Invoices />
+              <Route path="/" exact>
+                {isLoggedIn ? <Invoices /> : <Redirect to="/login" />}
               </Route>
               <Route path="/invoices/:id" exact>
-                <InvoiceDetailes />
+                {isLoggedIn ? <InvoiceDetailes /> : <Redirect to="/login" />}
               </Route>
             </Switch>
             <Form />

@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
   },
   paper: {
-    padding: '30px',
+    padding: '40px 30px',
     borderRadius: 8,
   },
 
@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
   },
   signState: {
     marginTop: 20,
-    cursor: 'pointer',
   },
 }));
 

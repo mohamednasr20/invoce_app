@@ -11,11 +11,29 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './styles';
 
+const initalState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
+
 const Auth = () => {
   const classes = useStyles();
   const [isSignUp, setIsSignUp] = useState(false);
+  const [formData, setFormData] = useState(initalState);
 
   const handleSignUp = () => setIsSignUp(!isSignUp);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   return (
     <Container component="main" className={classes.root}>
@@ -27,34 +45,49 @@ const Auth = () => {
           {isSignUp ? 'Sign up' : 'Sign in'}
         </Typography>
 
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             {isSignUp && (
               <>
                 <Input
                   name="firstName"
-                  value=""
+                  value={formData.firstName}
                   type="text"
                   label="First Name"
                   half
+                  handleChange={handleChange}
                 />
                 <Input
                   name="lastName"
-                  value=""
+                  value={formData.lastName}
                   type="text"
                   label="Last Name"
                   half
+                  handleChange={handleChange}
                 />
               </>
             )}
-            <Input name="email" value="" type="email" label="Email" />
-            <Input name="password" value="" type="passowrd" label="Password" />
+            <Input
+              name="email"
+              value={formData.email}
+              type="email"
+              label="Email"
+              handleChange={handleChange}
+            />
+            <Input
+              name="password"
+              value={formData.password}
+              type="password"
+              label="Password"
+              handleChange={handleChange}
+            />
             {isSignUp && (
               <Input
-                name="confirmPassowrd"
-                value=""
+                name="confirmPassword"
+                value={formData.confirmPassword}
                 type="password"
                 label="Confirm Password"
+                handleChange={handleChange}
               />
             )}
           </Grid>
@@ -63,19 +96,16 @@ const Auth = () => {
             variant="contained"
             color="primary"
             fullWidth
+            type="submit"
           >
             {isSignUp ? 'Sign Up' : 'Sign In'}
           </Button>
         </form>
-        <Typography
-          variant="subtitle1"
-          className={classes.signState}
-          onClick={handleSignUp}
-        >
+        <Button className={classes.signState} fullWidth onClick={handleSignUp}>
           {isSignUp
             ? 'Have an acount ? sign in'
             : "Don't have an acount ? sign up"}
-        </Typography>
+        </Button>
       </Paper>
     </Container>
   );

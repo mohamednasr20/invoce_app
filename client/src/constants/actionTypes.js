@@ -4,6 +4,10 @@ export const CREATE_INVOICE = 'CREATE_INVOICE';
 export const DELETE_INVOICE = 'DELETE_INVOICE';
 export const UPDATE_INVOICE = 'UPDATE_INVOICE';
 export const INVOICE_STATUS = 'INVOICE_STATUS';
+
 export const SWITCH_THEME = 'SWITCH_THEME';
 export const TOGGLE_FORM = 'TOGGLE_FORM';
 export const CURRENT_ID = 'CURRENT_ID';
+
+export const SIGNUP = 'SIGNUP';
+export const SIGNIN = 'SIGNIN';

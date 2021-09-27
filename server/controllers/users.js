@@ -42,5 +42,14 @@ export const signup = async (req, res) => {
       password: hashedPassword,
       name: `${firstName} ${lastName}`,
     });
-  } catch (error) {}
+
+    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, 'test', {
+      expiresIn: '1h',
+    });
+
+    res.status(201).json({ result, token });
+  } catch (error) {
+    res.status(500).json({ message: 'Something went wrong' });
+    console.log(error);
+  }
 };

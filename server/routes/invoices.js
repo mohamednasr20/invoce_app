@@ -7,7 +7,7 @@ import {
   updateInvoice,
   invoiceStatus,
 } from '../controllers/invoices.js';
-import auth from '../middleware/auth';
+import auth from '../middleware/auth.js';
 
 const router = express.Router();
 

@@ -26,11 +26,11 @@ const Form = () => {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const showForm = useSelector((state) => state.GlobalState.showForm);
-  const currentId = useSelector((state) => state.GlobalState.currentId);
+  const showForm = useSelector((state) => state.globalState.showForm);
+  const currentId = useSelector((state) => state.globalState.currentId);
   const invoice = useSelector((state) =>
     currentId
-      ? state.Invoices.invoices.find((invoice) => invoice._id === currentId)
+      ? state.invoices.invoices.find((invoice) => invoice._id === currentId)
       : null
   );
 

@@ -1,6 +1,5 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import mongoose from 'mongoose';
 import User from '../models/user.js';
 
 export const signin = async (req, res) => {
@@ -38,18 +37,18 @@ export const signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const result = await User.create({
+      name: `${firstName} ${lastName}`,
       email,
       password: hashedPassword,
-      name: `${firstName} ${lastName}`,
     });
 
-    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, 'test', {
+    const token = jwt.sign({ email: result.email, id: result._id }, 'test', {
       expiresIn: '1h',
     });
 
     res.status(201).json({ result, token });
   } catch (error) {
     res.status(500).json({ message: 'Something went wrong' });
-    console.log(error);
+    console.log(error.message);
   }
 };

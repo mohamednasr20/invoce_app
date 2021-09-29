@@ -8,7 +8,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const DetailesHeader = ({ openDeleteModal }) => {
   const dispatch = useDispatch();
-  const invoice = useSelector((state) => state.Invoices.invoice);
+  const invoice = useSelector((state) => state.invoices.invoice);
   const classes = useStyles({ invoice });
   const smScreen = useMediaQuery('(max-width:600px)');
 

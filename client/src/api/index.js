@@ -1,12 +1,15 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/invoices';
+const API = axios.create({ baseURL: 'http://localhost:5000' });
 
-export const fetchInvoices = () => axios.get(url);
-export const createInvoice = (newIvoice) => axios.post(url, newIvoice);
-export const fetchInvoice = (id) => axios.get(`${url}/${id}`);
-export const deleteInvoice = (id) => axios.delete(`${url}/${id}`);
+export const fetchInvoices = () => API.get('/invoices');
+export const createInvoice = (newIvoice) => API.post('/invoices', newIvoice);
+export const fetchInvoice = (id) => API.get(`/invoices/${id}`);
+export const deleteInvoice = (id) => API.delete(`/invoices/${id}`);
 export const updateInvoice = (id, updatedInvoice) =>
-  axios.put(`${url}/${id}`, updatedInvoice);
+  API.put(`/invoices/${id}`, updatedInvoice);
 export const updateInvoiceState = (id) =>
-  axios.patch(`${url}/${id}/invoiceStatus`);
+  API.patch(`/invoices/${id}/invoiceStatus`);
+
+export const signIn = (formData) => API.post('/user/signin', formData);
+export const signUp = (formData) => API.post('/user/signup', formData);

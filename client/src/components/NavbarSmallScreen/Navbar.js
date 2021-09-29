@@ -14,7 +14,7 @@ const Navbar = () => {
   const mDScreen = useMediaQuery('(max-width:960px)');
 
   const dispatch = useDispatch();
-  const isDarkMode = useSelector((state) => state.GlobalState.isDarkMode);
+  const isDarkMode = useSelector((state) => state.globalState.isDarkMode);
 
   const toggleMode = () => {
     dispatch(switchTheme());

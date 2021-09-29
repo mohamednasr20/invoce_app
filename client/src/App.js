@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Invoices from './components/Invoices/Invoices';
 import InvoiceDetailes from './components/InvoiceDetailes/InvoiceDetailes';
 import Form from './components/Form/Form';
@@ -22,10 +22,10 @@ import useStyles from './styles';
 const App = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const isDarkMode = useSelector((state) => state.GlobalState.isDarkMode);
-  const invoices = useSelector((state) => state.Invoices.invoices);
-  const invoice = useSelector((state) => state.Invoices.invoice);
-  const isLoggedIn = false;
+  const isDarkMode = useSelector((state) => state.globalState.isDarkMode);
+  const invoices = useSelector((state) => state.invoices.invoices);
+  const invoice = useSelector((state) => state.invoices.invoice);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
   useEffect(() => {
     dispatch(getInvoices());
@@ -37,16 +37,16 @@ const App = () => {
         <Box bgcolor="info.main" className={classes.root}>
           <Navbar />
           <Container className={classes.container}>
-            <PermanentDrawerLeft />
+            <PermanentDrawerLeft setUser={setUser} />
             <Switch>
               <Route path="/login" exact>
-                <Auth />
+                <Auth setUser={setUser} user={user} />
               </Route>
               <Route path="/" exact>
-                {isLoggedIn ? <Invoices /> : <Redirect to="/login" />}
+                {user ? <Invoices /> : <Redirect to="/login" />}
               </Route>
               <Route path="/invoices/:id" exact>
-                {isLoggedIn ? <InvoiceDetailes /> : <Redirect to="/login" />}
+                {user ? <InvoiceDetailes /> : <Redirect to="/login" />}
               </Route>
             </Switch>
             <Form />

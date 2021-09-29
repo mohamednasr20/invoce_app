@@ -14,7 +14,7 @@ import useStyles from './styles';
 
 const InvoiceDetailes = ({ setCurrentId }) => {
   const classes = useStyles();
-  const invoice = useSelector((state) => state.Invoices.invoice);
+  const invoice = useSelector((state) => state.invoices.invoice);
   const history = useHistory();
   const dispatch = useDispatch();
   const smScreen = useMediaQuery('(max-width:600px)');

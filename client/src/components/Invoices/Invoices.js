@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import useStyles from './styles';
 
 const Invoices = () => {
-  const invoices = useSelector((state) => state.Invoices.invoices);
+  const invoices = useSelector((state) => state.invoices.invoices);
   const classes = useStyles();
   const [status, setStatus] = useState('');
 

@@ -17,7 +17,7 @@ const InvoicesNav = ({ invoices, status, changeStatus }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const smScreen = useMediaQuery('(max-width:600px)');
-  const showForm = useSelector((state) => state.GlobalState.showForm);
+  const showForm = useSelector((state) => state.globalState.showForm);
 
   const addNewInvoice = () => {
     if (!showForm) {

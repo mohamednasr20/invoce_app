@@ -1,5 +1,7 @@
 import React from 'react';
-import { Drawer, Avatar } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import { LOGOUT } from '../../constants/actionTypes';
+import { Drawer, Avatar, Button } from '@material-ui/core';
 import avatar from '../../assets/image-avatar.jpg';
 import iconMoon from '../../assets/icon-moon.svg';
 import iconSun from '../../assets/icon-sun.svg';
@@ -9,14 +11,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-const PermanentDrawerLeft = () => {
+const PermanentDrawerLeft = ({ setUser }) => {
   const classes = useStyles();
   const lgScreen = useMediaQuery('(min-width:960px)');
   const dispatch = useDispatch();
-  const isDarkMode = useSelector((state) => state.GlobalState.isDarkMode);
+  const history = useHistory();
+  const isDarkMode = useSelector((state) => state.globalState.isDarkMode);
 
   const toggleMode = () => {
     dispatch(switchTheme());
+  };
+
+  const logout = () => {
+    dispatch({ type: LOGOUT });
+
+    history.push('/login');
+
+    setUser(null);
   };
 
   return (
@@ -40,7 +51,7 @@ const PermanentDrawerLeft = () => {
             className={classes.icons}
             onClick={() => toggleMode()}
           />
-
+          <Button onClick={logout}>logout</Button>
           <Avatar src={avatar} alt="avatar" className={classes.avatar} />
         </Drawer>
       )}

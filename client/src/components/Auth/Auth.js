@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Input from './Input/Input';
+import { signIn, signUp } from '../../actions/auth';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   Container,
   Typography,
@@ -19,8 +22,10 @@ const initalState = {
   confirmPassword: '',
 };
 
-const Auth = () => {
+const Auth = ({ setUser }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState(initalState);
 
@@ -28,7 +33,12 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    if (isSignUp) {
+      dispatch(signUp(formData, history));
+      console.log(formData);
+    } else {
+      dispatch(signIn(formData, history));
+    }
   };
 
   const handleChange = (e) => {

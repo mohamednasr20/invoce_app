@@ -10,7 +10,7 @@ import {
 } from '../constants/actionTypes';
 
 // eslint-disable-next-line
-export default (state = { invoices: [], invoice: {} }, action) => {
+const invoices = (state = { invoices: [], invoice: {} }, action) => {
   switch (action.type) {
     case FETCH_ALL:
       return { ...state, invoices: action.payload };
@@ -48,3 +48,5 @@ export default (state = { invoices: [], invoice: {} }, action) => {
       return state;
   }
 };
+
+export default invoices;

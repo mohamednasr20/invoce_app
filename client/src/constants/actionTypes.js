@@ -9,5 +9,5 @@ export const SWITCH_THEME = 'SWITCH_THEME';
 export const TOGGLE_FORM = 'TOGGLE_FORM';
 export const CURRENT_ID = 'CURRENT_ID';
 
-export const SIGNUP = 'SIGNUP';
-export const SIGNIN = 'SIGNIN';
+export const AUTH = 'AUTH';
+export const LOGOUT = 'LOGOUT';

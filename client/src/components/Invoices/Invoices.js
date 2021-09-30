@@ -4,7 +4,7 @@ import InvoicesNav from './InvoicesNav/InvoicesNav';
 import EmptyInvoicesList from './EmptyInvoicesList/EmptyInvoicesList';
 import { useSelector } from 'react-redux';
 import useStyles from './styles';
-
+import CircularIndeterminate from '../CircularIndeterminate/CircularIndeterminate';
 const Invoices = () => {
   const invoices = useSelector((state) => state.invoices.invoices);
   const classes = useStyles();
@@ -15,19 +15,21 @@ const Invoices = () => {
   };
 
   const currentInvoices =
-    status === ''
-      ? invoices
-      : invoices.filter((invoice) => invoice.status === status);
+    status !== '' && Array.isArray(invoices)
+      ? invoices.filter((invoice) => invoice.status === status)
+      : invoices;
 
-  const invoicesList = currentInvoices.length ? (
-    <div className={classes.invoicesList}>
-      {currentInvoices.map((invoice) => (
-        <Invoice key={invoice._id} invoice={invoice} />
-      ))}
-    </div>
-  ) : (
-    <EmptyInvoicesList />
-  );
+  const invoicesList = (invoices) => {
+    return invoices.length ? (
+      <div className={classes.invoicesList}>
+        {invoices.map((invoice) => (
+          <Invoice key={invoice._id} invoice={invoice} />
+        ))}
+      </div>
+    ) : (
+      <EmptyInvoicesList />
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -36,7 +38,11 @@ const Invoices = () => {
         status={status}
         changeStatus={handleChangeStatus}
       />
-      {invoicesList}
+      {Array.isArray(currentInvoices) ? (
+        invoicesList(currentInvoices)
+      ) : (
+        <CircularIndeterminate />
+      )}
     </div>
   );
 };

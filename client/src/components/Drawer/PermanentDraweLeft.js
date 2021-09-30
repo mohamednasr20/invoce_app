@@ -1,6 +1,5 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { LOGOUT } from '../../constants/actionTypes';
 import { Drawer, Avatar, Button } from '@material-ui/core';
 import avatar from '../../assets/image-avatar.jpg';
 import iconMoon from '../../assets/icon-moon.svg';
@@ -8,10 +7,11 @@ import iconSun from '../../assets/icon-sun.svg';
 import logo from '../../assets/logo.svg';
 import { switchTheme } from '../../actions/genralState';
 import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../actions/auth';
 import useStyles from './styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-const PermanentDrawerLeft = ({ setUser }) => {
+const PermanentDrawerLeft = () => {
   const classes = useStyles();
   const lgScreen = useMediaQuery('(min-width:960px)');
   const dispatch = useDispatch();
@@ -22,12 +22,10 @@ const PermanentDrawerLeft = ({ setUser }) => {
     dispatch(switchTheme());
   };
 
-  const logout = () => {
-    dispatch({ type: LOGOUT });
+  const handleLogout = () => {
+    dispatch(logout());
 
     history.push('/login');
-
-    setUser(null);
   };
 
   return (
@@ -51,7 +49,7 @@ const PermanentDrawerLeft = ({ setUser }) => {
             className={classes.icons}
             onClick={() => toggleMode()}
           />
-          <Button onClick={logout}>logout</Button>
+          <Button onClick={handleLogout}>logout</Button>
           <Avatar src={avatar} alt="avatar" className={classes.avatar} />
         </Drawer>
       )}

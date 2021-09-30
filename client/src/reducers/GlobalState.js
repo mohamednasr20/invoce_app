@@ -1,5 +1,3 @@
-// eslint-disable-next-line
-
 import {
   SWITCH_THEME,
   TOGGLE_FORM,

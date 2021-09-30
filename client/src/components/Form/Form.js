@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import FormField from './FormField/FormField';
 import ItemsList from './ItemsList/ItemsList';
-import { createInvoice, updateInvoice } from '../../actions/invoices';
+import {
+  createInvoice,
+  getInvoices,
+  updateInvoice,
+} from '../../actions/invoices';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFormShow, handleCurrentId } from '../../actions/genralState';
 import { data, getTotal, getDueDate, updateItemFields } from '../../helpers';
@@ -88,6 +92,7 @@ const Form = () => {
       history.push('/');
     } else {
       dispatch(createInvoice(invoiceData));
+      dispatch(getInvoices());
     }
 
     dispatch(toggleFormShow());
@@ -101,6 +106,7 @@ const Form = () => {
 
     // eslint-disable-next-line
   }, [currentId]);
+
   return (
     <Modal
       open={showForm === undefined ? false : showForm}

@@ -22,7 +22,7 @@ const initalState = {
   confirmPassword: '',
 };
 
-const Auth = ({ setUser }) => {
+const Auth = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -35,7 +35,6 @@ const Auth = ({ setUser }) => {
     e.preventDefault();
     if (isSignUp) {
       dispatch(signUp(formData, history));
-      console.log(formData);
     } else {
       dispatch(signIn(formData, history));
     }

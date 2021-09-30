@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
+import config from '../utils/config.js';
 
 export const signin = async (req, res) => {
   const { email, password } = req.body;
@@ -16,9 +17,13 @@ export const signin = async (req, res) => {
     if (!isPasswordCorrect)
       return res.status(400).json({ message: 'Invalid credentials' });
 
-    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, 'test', {
-      expiresIn: '1h',
-    });
+    const token = jwt.sign(
+      { email: oldUser.email, id: oldUser._id },
+      config.SECRET,
+      {
+        expiresIn: '1h',
+      }
+    );
     res.status(200).json({ result: oldUser, token });
   } catch (error) {
     res.status(500).json({ message: 'Something went wrong' });

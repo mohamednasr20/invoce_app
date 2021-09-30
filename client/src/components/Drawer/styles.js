@@ -44,7 +44,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
   },
   logout: {
-    margin: 10,
+    margin: 20,
+    fontSize: 10,
   },
 }));
 

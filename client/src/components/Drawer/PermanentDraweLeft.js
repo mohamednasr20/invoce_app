@@ -17,6 +17,7 @@ const PermanentDrawerLeft = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const isDarkMode = useSelector((state) => state.globalState.isDarkMode);
+  const authData = useSelector((state) => state.authReducer.authData);
 
   const toggleMode = () => {
     dispatch(switchTheme());
@@ -49,8 +50,22 @@ const PermanentDrawerLeft = () => {
             className={classes.icons}
             onClick={() => toggleMode()}
           />
-          <Button onClick={handleLogout}>logout</Button>
-          <Avatar src={avatar} alt="avatar" className={classes.avatar} />
+
+          {authData && (
+            <Avatar alt="avatar" className={classes.avatar}>
+              {authData?.result.name.charAt(0)}
+            </Avatar>
+          )}
+          {authData && (
+            <Button
+              className={classes.logout}
+              variant="contained"
+              color="primary"
+              onClick={handleLogout}
+            >
+              logout
+            </Button>
+          )}
         </Drawer>
       )}
     </div>

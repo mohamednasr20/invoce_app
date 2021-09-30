@@ -40,6 +40,11 @@ const useStyles = makeStyles((theme) => ({
 
   avatar: {
     margin: '20px auto',
+    background: '#ffffff',
+    color: theme.palette.primary.main,
+  },
+  logout: {
+    margin: 10,
   },
 }));
 

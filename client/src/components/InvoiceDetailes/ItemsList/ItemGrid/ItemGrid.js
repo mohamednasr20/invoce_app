@@ -8,16 +8,16 @@ const ItemGrid = ({ item }) => {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={6}>
+      <Grid item xs={5} sm={6}>
         <Typography variant="subtitle1">{item.name} </Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={2} sm={2}>
         <Typography variant="subtitle1">{item.quantity}</Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={3} sm={2}>
         <Typography variant="subtitle1">{item.price}</Typography>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={2} sm={2}>
         <Typography variant="subtitle1">{item.total}</Typography>
       </Grid>
     </Grid>

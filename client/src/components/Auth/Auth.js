@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Input from './Input/Input';
 import { signIn, signUp } from '../../actions/auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
   Container,
@@ -26,6 +26,7 @@ const Auth = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+  const error = useSelector((state) => state.authReducer.error);
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState(initalState);
 
@@ -83,6 +84,7 @@ const Auth = () => {
               label="Email"
               handleChange={handleChange}
             />
+            {error?.email && !isSignUp ? <div> {error.email}</div> : null}
             <Input
               name="password"
               value={formData.password}
@@ -90,6 +92,7 @@ const Auth = () => {
               label="Password"
               handleChange={handleChange}
             />
+            {error?.password && !isSignUp ? <div> {error.password}</div> : null}
             {isSignUp && (
               <Input
                 name="confirmPassword"

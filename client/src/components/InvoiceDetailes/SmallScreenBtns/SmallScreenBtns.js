@@ -6,7 +6,7 @@ import useStyles from './styles';
 import { Button, Paper } from '@material-ui/core';
 
 const SmallScreenBtns = ({ openDeleteModal }) => {
-  const invoice = useSelector((state) => state.GlobalState.invoice);
+  const invoice = useSelector((state) => state.invoices.invoice);
   const classes = useStyles();
   const dispatch = useDispatch();
 

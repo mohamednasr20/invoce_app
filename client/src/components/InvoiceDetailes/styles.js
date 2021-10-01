@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
       width: '688px',
     },
     [theme.breakpoints.down('xs')]: {
-      width: '327px',
+      width: '100%',
     },
     margin: 'auto',
   },

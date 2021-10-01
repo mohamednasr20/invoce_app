@@ -18,7 +18,8 @@ export const signIn = (formData, history) => async (dispatch) => {
     dispatch({ type: AUTH, data });
     history.push('/');
   } catch (error) {
-    console.log(error.message);
+    console.log(error.response.data);
+    dispatch({ type: 'ERROR', payload: error.response.data });
   }
 };
 

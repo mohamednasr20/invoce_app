@@ -4,12 +4,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: '20px 0 0',
     padding: '20px 10px',
+    textAlign: 'center',
   },
   btn: {
-    marginRight: 8,
     borderRadius: '25px',
-    fontWeight: '700',
-    fontSize: '12px',
+    marginRight: 5,
+    fontSize: '10px',
+
+    padding: 8,
   },
 }));
 

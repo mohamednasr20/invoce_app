@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Drawer, Avatar, Button } from '@material-ui/core';
-import avatar from '../../assets/image-avatar.jpg';
 import iconMoon from '../../assets/icon-moon.svg';
 import iconSun from '../../assets/icon-sun.svg';
 import logo from '../../assets/logo.svg';

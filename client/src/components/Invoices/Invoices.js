@@ -4,7 +4,6 @@ import InvoicesNav from './InvoicesNav/InvoicesNav';
 import EmptyInvoicesList from './EmptyInvoicesList/EmptyInvoicesList';
 import { useSelector } from 'react-redux';
 import useStyles from './styles';
-import CircularIndeterminate from '../CircularIndeterminate/CircularIndeterminate';
 const Invoices = () => {
   const invoices = useSelector((state) => state.invoices.invoices);
   const classes = useStyles();
@@ -15,7 +14,7 @@ const Invoices = () => {
   };
 
   const currentInvoices =
-    status !== '' && Array.isArray(invoices)
+    status !== '' && invoices.length
       ? invoices.filter((invoice) => invoice.status === status)
       : invoices;
 
@@ -38,11 +37,7 @@ const Invoices = () => {
         status={status}
         changeStatus={handleChangeStatus}
       />
-      {Array.isArray(currentInvoices) ? (
-        invoicesList(currentInvoices)
-      ) : (
-        <CircularIndeterminate />
-      )}
+      {invoicesList(currentInvoices)}
     </div>
   );
 };

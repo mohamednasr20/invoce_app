@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
   signState: {
     marginTop: 20,
   },
+  error: {
+    color: theme.palette.error.main,
+    marginLeft: 10,
+  },
 }));
 
 export default useStyles;

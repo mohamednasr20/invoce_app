@@ -3,6 +3,7 @@ import Input from './Input/Input';
 import { signIn, signUp } from '../../actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { ValidatorForm } from 'react-material-ui-form-validator';
 import {
   Container,
   Typography,
@@ -54,8 +55,7 @@ const Auth = () => {
         <Typography variant="h5" className={classes.header}>
           {isSignUp ? 'Sign up' : 'Sign in'}
         </Typography>
-
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <ValidatorForm className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             {isSignUp && (
               <>
@@ -83,16 +83,28 @@ const Auth = () => {
               type="email"
               label="Email"
               handleChange={handleChange}
+              error={
+                (error?.email && !isSignUp && true) ||
+                (error?.userExist && isSignUp && true)
+              }
+              helperText={
+                (error?.email && !isSignUp && error.email) ||
+                (error?.userExist && isSignUp && error.userExist)
+              }
+              validators={['required', 'isEmail']}
+              errorMessages={["can't be empty", 'must be vaild email']}
             />
-            {error?.email && !isSignUp ? <div> {error.email}</div> : null}
+
             <Input
               name="password"
               value={formData.password}
               type="password"
               label="Password"
               handleChange={handleChange}
+              error={error?.password && !isSignUp && true}
+              helperText={error?.password && error.password}
             />
-            {error?.password && !isSignUp ? <div> {error.password}</div> : null}
+
             {isSignUp && (
               <Input
                 name="confirmPassword"
@@ -100,6 +112,8 @@ const Auth = () => {
                 type="password"
                 label="Confirm Password"
                 handleChange={handleChange}
+                error={error?.matchPassword && true}
+                helperText={error?.matchPassword && error.matchPassword}
               />
             )}
           </Grid>
@@ -112,7 +126,7 @@ const Auth = () => {
           >
             {isSignUp ? 'Sign Up' : 'Sign In'}
           </Button>
-        </form>
+        </ValidatorForm>
         <Button className={classes.signState} fullWidth onClick={handleSignUp}>
           {isSignUp
             ? 'Have an acount ? sign in'

@@ -25,7 +25,7 @@ const PermanentDrawerLeft = () => {
   const handleLogout = () => {
     dispatch(logout());
 
-    history.push('/login');
+    history.push('/auth');
   };
 
   return (

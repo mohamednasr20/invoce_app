@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingRight: 10,
   },
 
   logoDiv: {
@@ -40,8 +41,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
   avatar: {
-    marginLeft: '80px',
-    marginRight: '30px',
+    marginLeft: 15,
+    marginRight: 15,
+  },
+  logout: {
+    padding: 5,
+    fontSize: '10px',
   },
 }));
 

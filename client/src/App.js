@@ -37,11 +37,11 @@ const App = () => {
           <Container className={classes.container}>
             <PermanentDrawerLeft />
             <Switch>
-              <Route path="/login" exact>
-                <Auth />
-              </Route>
               <Route path="/" exact>
-                {authData ? <Invoices /> : <Redirect to="/login" />}
+                {authData ? <Invoices /> : <Redirect to="/auth" />}
+              </Route>
+              <Route path="/auth" exact>
+                <Auth />
               </Route>
               <Route path="/invoices/:id" exact>
                 {authData ? <InvoiceDetailes /> : <Redirect to="/login" />}

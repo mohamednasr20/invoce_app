@@ -2,10 +2,11 @@ import React from 'react';
 import iconMoon from '../../assets/icon-moon.svg';
 import iconSun from '../../assets/icon-sun.svg';
 import logo from '../../assets/logo.svg';
-import avatar from '../../assets/image-avatar.jpg';
 import { switchTheme } from '../../actions/genralState';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Avatar from '@material-ui/core/Avatar';
+import { logout } from '../../actions/auth';
+import { Avatar, Button } from '@material-ui/core';
 import useStyles from './styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
@@ -14,10 +15,18 @@ const Navbar = () => {
   const mDScreen = useMediaQuery('(max-width:960px)');
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const isDarkMode = useSelector((state) => state.globalState.isDarkMode);
+  const authData = useSelector((state) => state.authReducer.authData);
 
   const toggleMode = () => {
     dispatch(switchTheme());
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+
+    history.push('/auth');
   };
 
   return (
@@ -34,7 +43,21 @@ const Navbar = () => {
             onClick={() => toggleMode()}
           />
 
-          <Avatar src={avatar} alt="avatar" className={classes.avatar} />
+          {authData && (
+            <Avatar alt="avatar" className={classes.avatar}>
+              {authData?.result.name.charAt(0)}
+            </Avatar>
+          )}
+          {authData && (
+            <Button
+              className={classes.logout}
+              variant="contained"
+              color="primary"
+              onClick={handleLogout}
+            >
+              logout
+            </Button>
+          )}
         </div>
       )}
     </>

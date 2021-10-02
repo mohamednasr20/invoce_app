@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     marginLeft: '80px',
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       marginLeft: 0,
       width: '100%',
     },
@@ -67,6 +67,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '12px',
     lineHeight: '15px',
     spaceLetter: '-0.25',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 8,
+      padding: 5,
+    },
   },
 
   btnList: {

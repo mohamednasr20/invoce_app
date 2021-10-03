@@ -52,7 +52,7 @@ const Navbar = () => {
             <Button
               className={classes.logout}
               variant="contained"
-              color="primary"
+              color="secondary"
               onClick={handleLogout}
             >
               logout

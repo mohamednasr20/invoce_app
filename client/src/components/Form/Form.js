@@ -3,8 +3,8 @@ import FormField from './FormField/FormField';
 import ItemsList from './ItemsList/ItemsList';
 import {
   createInvoice,
-  getInvoices,
   updateInvoice,
+  getInvoices,
 } from '../../actions/invoices';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFormShow, handleCurrentId } from '../../actions/genralState';
@@ -101,9 +101,7 @@ const Form = () => {
 
   useEffect(() => {
     if (invoice) setInvocieData(invoice);
-
     if (!currentId) clear();
-
     // eslint-disable-next-line
   }, [currentId]);
 
@@ -113,7 +111,6 @@ const Form = () => {
       onClose={() => dispatch(toggleFormShow())}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
-      // style={{ display: showForm ? 'block' : 'none' }}
       className={classes.root}
     >
       <Container className={classes.formContainer}>

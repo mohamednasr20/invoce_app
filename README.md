@@ -6,7 +6,6 @@ Receive form validations when trying to create/edit an invoice, Save draft invoi
 
 ## Links
 
-- [Repo](https://github.com/mohamednasr20/invoce_app_mern "invoce_app_mern Repo")
 
 - [Live](https://invoiceweb.netlify.app "Live View")
 

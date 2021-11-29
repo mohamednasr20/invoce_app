@@ -14,6 +14,7 @@ Receive form validations when trying to create/edit an invoice, Save draft invoi
 ## Built With
 
 - React.js
+- Redux
 - Express.js
 - MangoDB
 - Material-Ui

@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.bc57d1eb.chunk.js",
-    "main.js.map": "/static/js/main.bc57d1eb.chunk.js.map",
+    "main.js": "/static/js/main.effe5b18.chunk.js",
+    "main.js.map": "/static/js/main.effe5b18.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.a06e69b5.js",
     "runtime-main.js.map": "/static/js/runtime-main.a06e69b5.js.map",
-    "static/js/2.654eb2d5.chunk.js": "/static/js/2.654eb2d5.chunk.js",
-    "static/js/2.654eb2d5.chunk.js.map": "/static/js/2.654eb2d5.chunk.js.map",
+    "static/js/2.7077d3b3.chunk.js": "/static/js/2.7077d3b3.chunk.js",
+    "static/js/2.7077d3b3.chunk.js.map": "/static/js/2.7077d3b3.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.654eb2d5.chunk.js.LICENSE.txt": "/static/js/2.654eb2d5.chunk.js.LICENSE.txt",
+    "static/js/2.7077d3b3.chunk.js.LICENSE.txt": "/static/js/2.7077d3b3.chunk.js.LICENSE.txt",
     "static/media/icon-moon.7101c57d.svg": "/static/media/icon-moon.7101c57d.svg",
     "static/media/icon-sun.f3da52d1.svg": "/static/media/icon-sun.f3da52d1.svg",
     "static/media/illustration-empty.e3122ec2.svg": "/static/media/illustration-empty.e3122ec2.svg",
@@ -15,7 +15,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.a06e69b5.js",
-    "static/js/2.654eb2d5.chunk.js",
-    "static/js/main.bc57d1eb.chunk.js"
+    "static/js/2.7077d3b3.chunk.js",
+    "static/js/main.effe5b18.chunk.js"
   ]
 }

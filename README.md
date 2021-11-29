@@ -1,6 +1,6 @@
-<h1 align="center">Invocies_app</h1>
+<h1>Invocies_app</h1>
 
-<p align="center">This full-stack invoicing application the user can Create, read, update, and delete invoices,
+<p>This full-stack invoicing application the user can Create, read, update, and delete invoices,
 Receive form validations when trying to create/edit an invoice, Save draft invoices, and mark pending invoices as paid, Filter invoices by status (draft/pending/paid), Toggle light and dark mode.
 </p>
 

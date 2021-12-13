@@ -1,7 +1,7 @@
 <h1>Invocies_app</h1>
 
-<p>This full-stack invoicing application the user can Create, read, update, and delete invoices,
-Receive form validations when trying to create/edit an invoice, Save draft invoices, and mark pending invoices as paid, Filter invoices by status (draft/pending/paid), Toggle light and dark mode.
+<p>A MERN stack application, performing CURD operations to submit and retrive user requests, and user must authenticate to use this app.
+  * demo acount to try the app (user: "test2@test.com" , password : 123123)
 </p>
 
 ## Links
